@@ -1,0 +1,41 @@
+tr:nth-child(even) td:nth-child(even) {
+  background: #fff;
+}
+
+tr:nth-child(even) td:nth-child(odd) {
+  background: #ddd;
+}
+
+tr:nth-child(odd) td:nth-child(even) {
+  background: #ddd;
+}
+
+tr:nth-child(odd) td:nth-child(odd) {
+  background: #fff;
+}
+
+tr {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+td {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #000;
+  border-right: none;
+  border-bottom: none;
+}
+
+tr:nth-child(8) td {
+  border-bottom: 1px solid #000;
+}
+
+td:nth-child(8) {
+  border-right: 1px solid #000;
+}
