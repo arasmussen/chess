@@ -13,8 +13,21 @@ $(function() {
     'p': 'pawn'
   }
 
+  // response is of the format
+  // command,command,command...
   function handleResponse(response) {
-    var arr = response.split(' ');
+    console.log(response);
+    var commands = response.split(',');
+    commands.forEach(function(command) {
+      handleCommand(command);
+    });
+  }
+  // command is of the format
+  // 'remove e2' or
+  // 'add e4 bk'
+  function handleCommand(command) {
+    console.log(command);
+    var arr = command.split(' ');
     var cmd = arr[0];
     var square = arr[1];
     if (cmd == "remove") {
@@ -46,6 +59,14 @@ $(function() {
     var filename = '/img/' + color + '-' + piece + '.png';
     return filename;
   }
-  handleResponse('remove e2');
-  handleResponse('add e4 bk');
+
+  function makeRequest() {
+    var request = $.ajax({
+      url: '/update.php',
+      type: 'GET',
+    });
+    request.done(handleResponse);
+  }
+
+  makeRequest();
 });
