@@ -16,11 +16,14 @@ $(function() {
   // response is of the format
   // command,command,command...
   function handleResponse(response) {
-    console.log(response);
-    var commands = response.split(',');
-    commands.forEach(function(command) {
-      handleCommand(command);
-    });
+    if (response.length > 0) {
+      console.log(response);
+      var commands = response.split(',');
+      commands.forEach(function(command) {
+        handleCommand(command);
+      });
+    }
+    setTimeout(makeRequest, 1000);
   }
   // command is of the format
   // 'remove e2' or
