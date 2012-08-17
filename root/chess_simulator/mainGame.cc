@@ -1,6 +1,10 @@
-#include "ChessGame.h"
+#include "ChessGameManager.h"
 
 int main(int argc, char** argv) {
-	ChessGame mainGame(argv[1], argv[2]);
-	return mainGame.run(); 
+	ChessGameManager manager;
+
+	manager.startGame(argv[1], argv[2]);
+	manager.startGame(argv[1], argv[2]);
+
+	manager.finish();
 }
