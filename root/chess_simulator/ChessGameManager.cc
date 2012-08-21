@@ -8,7 +8,6 @@ void *startThread(void *ptr) {
 	game->run();
 }
 
-
 ChessGameManager::ChessGameManager() {
 
 }
@@ -22,7 +21,7 @@ ChessGameManager::~ChessGameManager() {
 	}
 }
 
-void ChessGameManager::startGame(char *whiteAlgorithm, char *blackAlgorithm) {
+void ChessGameManager::startGame(const char *whiteAlgorithm, const char *blackAlgorithm) {
 	ChessGame *newGame = new ChessGame(whiteAlgorithm, blackAlgorithm);
 	activeGames.push_back(newGame);
 

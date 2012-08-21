@@ -9,9 +9,19 @@
 
 using namespace std;
 
-ChessAlgorithm::ChessAlgorithm(char *algorithm, Color color) :
-	algorithm(algorithm),
-	color(color) {}
+ChessAlgorithm::ChessAlgorithm(const char *algorithm, Color color) :
+	color(color) 
+{
+	int length = strlen(algorithm);
+	this->algorithm = new char[length];
+	strcpy(this->algorithm, algorithm);	
+}
+
+ChessAlgorithm::~ChessAlgorithm() {
+	delete [] algorithm;
+	close(writePipe[1]);
+	close(readPipe[0]);
+}
 
 void ChessAlgorithm::start() {
 	int pid;
@@ -73,11 +83,11 @@ void ChessAlgorithm::getMove(ChessMove *sendMove, ChessMove *&receivedMove) {
 	receivedMove = new ChessMove(move);
 }
 
-void ChessAlgorithm::didWin(char *reason) {
+void ChessAlgorithm::didWin(const char *reason) {
 	writeToPipe(string(reason));	
 }
 
-void ChessAlgorithm::didLose(char *reason) {
+void ChessAlgorithm::didLose(const char *reason) {
 	writeToPipe(string(reason));	
 }
 

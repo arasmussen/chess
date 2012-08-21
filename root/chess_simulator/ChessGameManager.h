@@ -12,7 +12,7 @@ class ChessGameManager {
 		ChessGameManager();
 		~ChessGameManager();
 
-		void startGame(char *whiteAlgorithm, char *blackAlgorithm);
+		void startGame(const char *whiteAlgorithm,const char *blackAlgorithm);
 
 		void finish();
 	private:

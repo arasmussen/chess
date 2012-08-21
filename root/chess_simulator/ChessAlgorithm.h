@@ -13,7 +13,8 @@ enum Color {
 
 class ChessAlgorithm {
 	public:
-		ChessAlgorithm(char *algorithm, Color color);
+		ChessAlgorithm(const char *algorithm, Color color);
+		~ChessAlgorithm();
 
 		void start();
 		void stop();
@@ -21,8 +22,8 @@ class ChessAlgorithm {
 		void getFirstMove(ChessMove *&receivedMove);
 		void getMove(ChessMove *sendMove, ChessMove *&receivedMove);
 
-		void didWin(char *reason);
-		void didLose(char *reason);
+		void didWin(const char *reason);
+		void didLose(const char *reason);
 	private:
 		char *algorithm;
 		Color color;

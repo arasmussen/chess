@@ -16,7 +16,7 @@ enum ChessGameResult {
 
 class ChessGame {
 	public:
-		ChessGame(char *whiteAlgorithm, char *blackAlgorithm);
+		ChessGame(const char *whiteAlgorithm, const char *blackAlgorithm);
 		~ChessGame();
 
 		ChessGameResult run();
