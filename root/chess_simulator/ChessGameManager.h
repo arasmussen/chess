@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <pthread.h>
+#include <string>
 using namespace std;
 
 class ChessGame;
@@ -12,7 +13,7 @@ class ChessGameManager {
 		ChessGameManager();
 		~ChessGameManager();
 
-		void startGame(const char *whiteAlgorithm,const char *blackAlgorithm);
+		void startGame(const string & whiteAlgorithm,const string& blackAlgorithm);
 
 		void finish();
 	private:

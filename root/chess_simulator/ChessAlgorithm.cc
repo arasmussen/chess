@@ -9,16 +9,23 @@
 
 using namespace std;
 
-ChessAlgorithm::ChessAlgorithm(const char *algorithm, Color color) :
+// Since we control syntax for moves we can set an upper limit here.
+static const int maxMoveLength = 30;
+
+static const string kWhitePlayer("White");
+static const string kBlackPlayer("Black");
+static const string kWinByCheckmate("Win:Checkmate");
+static const string kWinByIllegalMove("Win:IllegalMove");
+static const string kLoseByCheckmate("Lose:Checkmate");
+static const string kLoseByIllegalMove("Lose:IllegalMove");
+
+
+ChessAlgorithm::ChessAlgorithm(const string& algorithm, Color color) :
+	algorithm(algorithm),
 	color(color) 
-{
-	int length = strlen(algorithm);
-	this->algorithm = new char[length];
-	strcpy(this->algorithm, algorithm);	
-}
+{}
 
 ChessAlgorithm::~ChessAlgorithm() {
-	delete [] algorithm;
 	close(writePipe[1]);
 	close(readPipe[0]);
 }
@@ -54,7 +61,7 @@ void ChessAlgorithm::start() {
 		}
 
 		// Start algorithm
-		if (execv(algorithm, NULL) < 0) {
+		if (execv(algorithm.c_str(), NULL) < 0) {
 			ERROR("Execv failed");
 		} 
 	} else {
@@ -62,7 +69,7 @@ void ChessAlgorithm::start() {
 		close(readPipe[1]);
 
 		// Let algorithm know which color it is.
-		writeToPipe(string(colorToString(color)));
+		writeToPipe(colorToString(color));
 	}
 }
 
@@ -83,27 +90,38 @@ void ChessAlgorithm::getMove(ChessMove *sendMove, ChessMove *&receivedMove) {
 	receivedMove = new ChessMove(move);
 }
 
-void ChessAlgorithm::didWin(const char *reason) {
-	writeToPipe(string(reason));	
+void ChessAlgorithm::didFinish(EndGameResult result) {
+	writeToPipe(endGameResultToString(result));
 }
 
-void ChessAlgorithm::didLose(const char *reason) {
-	writeToPipe(string(reason));	
-}
-
-const char * ChessAlgorithm::colorToString(Color c) {
+const string& ChessAlgorithm::colorToString(Color c) {
 	switch(c) {
 		case White:
-			return "White";
+			return kWhitePlayer;
 		case Black:
-			return "Black";
+			return kBlackPlayer;
 		default:
 			ERROR("Invalid Color");
 	}
 }
 
+const string& ChessAlgorithm::endGameResultToString(EndGameResult result) {
+	switch (result) {
+		case WinByCheckmate:
+			return kWinByCheckmate;
+		case WinByIllegalMove:
+			return kWinByIllegalMove;
+		case LoseByCheckmate:
+			return kLoseByCheckmate;
+		case LoseByIllegalMove:
+			return kLoseByIllegalMove;
+		default:
+			ERROR("Invalid EndGameResult");
+	}
+}
+
 string ChessAlgorithm::readFromPipe() {
-	char buf[30];
+	char buf[30]; 
 	int bytesRead = read(readPipe[0], buf, 30);
 	
 	if (bytesRead < 0) {
@@ -113,10 +131,11 @@ string ChessAlgorithm::readFromPipe() {
 	return string(buf, bytesRead); 
 }
 
-void ChessAlgorithm::writeToPipe(string move) {
-	move.append((char *)"\n");
+void ChessAlgorithm::writeToPipe(const string& move) {
+	string sendMove = move;
+	sendMove.append("\n");
 
-	int bytesWritten = write(writePipe[1], move.c_str(), move.length()); 
+	int bytesWritten = write(writePipe[1], sendMove.c_str(), sendMove.length()); 
 	if (bytesWritten < 0) {
 		ERROR("Write Error");
 	}

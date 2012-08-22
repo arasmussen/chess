@@ -13,7 +13,7 @@ ChessMove::ChessMove(string move) :
 	stringRep(move)
 {}
 
-string ChessMove::toString() {
+string& ChessMove::toString() {
 	return stringRep;
 }
 /*

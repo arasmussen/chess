@@ -3,19 +3,28 @@
 using namespace std;
 
 int main(int argc, char **argv) {
+	char player[20];
 	char buf[20];
 
-	cin >> buf;
+	cin >> player;
 
-	if (strcmp(buf, "Black") == 0) {
+	if (strcmp(player, "Black") == 0) {
 		cin >> buf;
-	}
-
-	cout << "FistMove";
-
-	cin >> buf;
-	cout << "SecondMove"; 
+		cerr << "Black Recieve: " << buf << endl;
 	
-	string tok;
-	cin >> tok;
+		cout << "BlackFirstMove";
+
+		cin >> buf;
+		cerr << "Black Recieve: " << buf << endl;
+	} else {
+		cout << "WhiteFirstMove";
+
+		cin >> buf;
+		cerr << "White Recieve: " << buf << endl;
+
+		cout << "WhiteSecondMove";
+
+		cin >> buf;
+		cerr << "White Recieve: " << buf << endl;
+	}
 }

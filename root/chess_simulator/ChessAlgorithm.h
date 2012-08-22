@@ -11,9 +11,16 @@ enum Color {
 	Black
 };
 
+enum EndGameResult {
+	WinByCheckmate,
+	WinByIllegalMove,
+	LoseByCheckmate,
+	LoseByIllegalMove
+};
+
 class ChessAlgorithm {
 	public:
-		ChessAlgorithm(const char *algorithm, Color color);
+		ChessAlgorithm(const string& algorithm, Color color);
 		~ChessAlgorithm();
 
 		void start();
@@ -22,17 +29,18 @@ class ChessAlgorithm {
 		void getFirstMove(ChessMove *&receivedMove);
 		void getMove(ChessMove *sendMove, ChessMove *&receivedMove);
 
-		void didWin(const char *reason);
-		void didLose(const char *reason);
+		void didFinish(EndGameResult result);
 	private:
-		char *algorithm;
+		string algorithm;
 		Color color;
 		int readPipe[2];
 		int writePipe[2];
 
-		const char *colorToString(Color c);
+		const string& colorToString(Color c);
+		const string& endGameResultToString(EndGameResult result);
+
 		string readFromPipe();
-		void writeToPipe(string move);
+		void writeToPipe(const string& move);
 };
 
 #endif

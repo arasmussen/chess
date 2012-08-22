@@ -2,6 +2,7 @@
 #define __CHESS_GAME_H_
 
 #include <vector>
+#include <string>
 using namespace std;
 
 class ChessBoard;
@@ -16,7 +17,7 @@ enum ChessGameResult {
 
 class ChessGame {
 	public:
-		ChessGame(const char *whiteAlgorithm, const char *blackAlgorithm);
+		ChessGame(const string& whiteAlgorithm, const string& blackAlgorithm);
 		~ChessGame();
 
 		ChessGameResult run();

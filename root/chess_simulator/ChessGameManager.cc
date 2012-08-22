@@ -21,7 +21,7 @@ ChessGameManager::~ChessGameManager() {
 	}
 }
 
-void ChessGameManager::startGame(const char *whiteAlgorithm, const char *blackAlgorithm) {
+void ChessGameManager::startGame(const string& whiteAlgorithm, const string& blackAlgorithm) {
 	ChessGame *newGame = new ChessGame(whiteAlgorithm, blackAlgorithm);
 	activeGames.push_back(newGame);
 

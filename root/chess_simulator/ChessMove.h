@@ -32,10 +32,10 @@ class ChessMove {
 		// Castles
 		// ChessMove(ChessMoveType type);
 
-		// En Passe
+		// En Passent
 		// TODO: Implement
 
-		string toString();
+		string& toString();
 	
 	private:
 		string stringRep;

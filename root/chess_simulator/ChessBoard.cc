@@ -39,7 +39,7 @@ ChessBoard::~ChessBoard() {
 }
 
 ChessMoveResult ChessBoard::performMove(ChessMove *move) {
-	if (move->toString() == string("Second Move")) {
+	if (move->toString() == string("WhiteSecondMove")) {
 		return Checkmate;
 	}
 	return Continue;
