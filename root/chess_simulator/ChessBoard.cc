@@ -39,9 +39,12 @@ ChessBoard::~ChessBoard() {
 }
 
 ChessMoveResult ChessBoard::performMove(ChessMove *move) {
-	if (move->toString() == string("WhiteSecondMove")) {
-		return Checkmate;
+	if (!move->isValid()) {
+		return Error;
 	}
 	return Continue;
 }
 
+const ChessPiece* ChessBoard::pieceAtPosition(BoardPosition* position) const {
+	return board[position->row][position->column];
+}

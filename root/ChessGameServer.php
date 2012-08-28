@@ -44,6 +44,5 @@ class ChessGameServer {
 
 $chessGameServer = new ChessGameServer;
 $chessGameServer->startGame($argv[1], $argv[2]);
-$chessGameServer->startGame($argv[1], $argv[2]);
 
 ?>

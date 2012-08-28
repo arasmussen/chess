@@ -4,6 +4,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include <sys/wait.h>
+#include <sstream>
+#include <algorithm>
+#include <iterator>
 
 #define ERROR(s) { cerr << "ERROR " << s << endl; exit(1); }
 
@@ -21,9 +24,15 @@ static const string kLoseByIllegalMove("Lose:IllegalMove");
 
 
 ChessAlgorithm::ChessAlgorithm(const string& algorithm, Color color) :
-	algorithm(algorithm),
 	color(color) 
-{}
+{
+	// Tokenize string
+	istringstream iss(algorithm);
+	copy(istream_iterator<string>(iss),
+       istream_iterator<string>(),
+       back_inserter<vector<string> >(tokens));
+
+}
 
 ChessAlgorithm::~ChessAlgorithm() {
 	close(writePipe[1]);
@@ -60,8 +69,17 @@ void ChessAlgorithm::start() {
 			ERROR("Replacing stdout failed");
 		}
 
+		const char** argv;
+		if (tokens.size() > 0) {
+			argv = new const char* [tokens.size() + 1];
+			argv[tokens.size()] = NULL;
+			int i = 0;
+			for (vector<string>::iterator it = tokens.begin(); it != tokens.end(); it++, i++) {
+				argv[i] = it->c_str();
+			}
+		}
 		// Start algorithm
-		if (execv(algorithm.c_str(), NULL) < 0) {
+		if (execv(argv[0], (char* const*)argv) < 0) {
 			ERROR("Execv failed");
 		} 
 	} else {
@@ -78,16 +96,14 @@ void ChessAlgorithm::stop() {
 	wait(&status);
 }
 
-void ChessAlgorithm::getFirstMove(ChessMove *&receivedMove) {
-	string move = readFromPipe();
-	receivedMove = new ChessMove(move);
+shared_ptr<string> ChessAlgorithm::getFirstMove() {
+	return readFromPipe();
 }
 
-void ChessAlgorithm::getMove(ChessMove *sendMove, ChessMove *&receivedMove) {
-	writeToPipe(sendMove->toString());
+shared_ptr<string> ChessAlgorithm::getMove(const string& sendMove) {
+	writeToPipe(sendMove);
 
-	string move = readFromPipe();
-	receivedMove = new ChessMove(move);
+	return readFromPipe();
 }
 
 void ChessAlgorithm::didFinish(EndGameResult result) {
@@ -120,7 +136,7 @@ const string& ChessAlgorithm::endGameResultToString(EndGameResult result) {
 	}
 }
 
-string ChessAlgorithm::readFromPipe() {
+shared_ptr<string> ChessAlgorithm::readFromPipe() {
 	char buf[30]; 
 	int bytesRead = read(readPipe[0], buf, 30);
 	
@@ -128,7 +144,7 @@ string ChessAlgorithm::readFromPipe() {
 		ERROR("Read error");
 	}	
 
-	return string(buf, bytesRead); 
+	return shared_ptr<string>(new string(buf, bytesRead)); 
 }
 
 void ChessAlgorithm::writeToPipe(const string& move) {

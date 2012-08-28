@@ -3,6 +3,9 @@
 #include "ChessAlgorithm.h"
 #include "ChessMove.h"
 #include <iostream>
+#include <boost/shared_ptr.hpp>
+
+using boost::shared_ptr;
 
 static const char *byCheckmate = "ByCheckmate";
 static const char *illegalMove = "IllegalMove";
@@ -29,24 +32,22 @@ ChessGameResult ChessGame::run() {
 
 	ChessMove *whiteMove;
 	ChessMove *blackMove;
-	whiteAlgorithm->getFirstMove(whiteMove);
 
+	whiteMove = new ChessMove(board, whiteAlgorithm->getFirstMove());
 	while (true) {
 		if (applyMove(whiteAlgorithm, blackAlgorithm, whiteMove)) {
 			break;
 		}
-		blackAlgorithm->getMove(whiteMove, blackMove);
+		blackMove = new ChessMove(board, blackAlgorithm->getMove(whiteMove->toString()));
 
 		if (applyMove(blackAlgorithm, whiteAlgorithm, blackMove)) {
 			break;
 		}
-		whiteAlgorithm->getMove(blackMove, whiteMove);
+		whiteMove = new ChessMove(board, whiteAlgorithm->getMove(blackMove->toString()));
 	}
 
 	whiteAlgorithm->stop();
 	blackAlgorithm->stop();
-
-	cout << "End of Game" << endl;
 }
 
 bool ChessGame::applyMove(ChessAlgorithm *applier, ChessAlgorithm *receiver, ChessMove *move) {

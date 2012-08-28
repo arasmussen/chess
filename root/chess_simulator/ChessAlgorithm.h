@@ -2,7 +2,11 @@
 #define __CHESS_ALGORITHM_H_
 
 #include <string>
+#include <vector>
+#include <boost/shared_ptr.hpp>
+
 using namespace std;
+using boost::shared_ptr;
 
 class ChessMove;
 
@@ -26,12 +30,12 @@ class ChessAlgorithm {
 		void start();
 		void stop();
 
-		void getFirstMove(ChessMove *&receivedMove);
-		void getMove(ChessMove *sendMove, ChessMove *&receivedMove);
+		shared_ptr<string> getFirstMove();
+		shared_ptr<string> getMove(const string& sendMove);
 
 		void didFinish(EndGameResult result);
 	private:
-		string algorithm;
+		vector<string> tokens;
 		Color color;
 		int readPipe[2];
 		int writePipe[2];
@@ -39,7 +43,7 @@ class ChessAlgorithm {
 		const string& colorToString(Color c);
 		const string& endGameResultToString(EndGameResult result);
 
-		string readFromPipe();
+		shared_ptr<string> readFromPipe();
 		void writeToPipe(const string& move);
 };
 

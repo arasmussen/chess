@@ -5,6 +5,7 @@
 
 class ChessPiece;
 class ChessMove;
+class BoardPosition;
 
 enum ChessMoveResult {
 	Continue,
@@ -18,6 +19,7 @@ class ChessBoard {
 		~ChessBoard();
 	
 	ChessMoveResult performMove(ChessMove *move);	
+	const ChessPiece *pieceAtPosition(BoardPosition* position) const;
 
 	private:
 		ChessPiece *board [BOARD_SIZE][BOARD_SIZE];
