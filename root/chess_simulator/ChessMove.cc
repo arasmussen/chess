@@ -27,7 +27,7 @@ ChessMove::ChessMove(const ChessBoard* board, shared_ptr<string> move) :
 	special(NULL)
 {
 	int indexOfSeparator = move->find_first_of(':');
-	if (indexOfSeparator != string::npos) {
+	if (indexOfSeparator == 2 && move->length() == 5) {
 		initialPosition = new BoardPosition(move->substr(0, 2));
 		finalPosition = new BoardPosition(move->substr(indexOfSeparator+1, 2));
 		piece = board->pieceAtPosition(initialPosition);
