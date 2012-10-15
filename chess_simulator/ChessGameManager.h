@@ -9,16 +9,16 @@ using namespace std;
 class ChessGame;
 
 class ChessGameManager {
-	public:
-		ChessGameManager();
-		~ChessGameManager();
+  public:
+    ChessGameManager();
+    ~ChessGameManager();
 
-		void startGame(const string & whiteAlgorithm,const string& blackAlgorithm);
+    void startGame(const string & whiteAlgorithm,const string& blackAlgorithm);
 
-		void finish();
-	private:
-		vector<ChessGame *> activeGames;
-		vector<pthread_t *> activeThreads;
+    void finish();
+  private:
+    vector<ChessGame *> activeGames;
+    vector<pthread_t *> activeThreads;
 };
 
 #endif

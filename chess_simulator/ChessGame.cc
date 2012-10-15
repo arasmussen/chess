@@ -11,59 +11,60 @@ static const char *byCheckmate = "ByCheckmate";
 static const char *illegalMove = "IllegalMove";
 
 ChessGame::ChessGame(const string& whiteAlgorithm, const string& blackAlgorithm) :
-	board(new ChessBoard()),
-	whiteAlgorithm(new ChessAlgorithm(whiteAlgorithm, White)), 
-	blackAlgorithm(new ChessAlgorithm(blackAlgorithm, Black))
+  board(new ChessBoard()),
+  whiteAlgorithm(new ChessAlgorithm(whiteAlgorithm, White)),
+  blackAlgorithm(new ChessAlgorithm(blackAlgorithm, Black))
 {}
 
 ChessGame::~ChessGame() {
-	delete board;
-	delete whiteAlgorithm;
-	delete blackAlgorithm;
+  delete board;
+  delete whiteAlgorithm;
+  delete blackAlgorithm;
 
-	for (vector<ChessMove *>::iterator it = moves.begin(); it != moves.end(); it++) {
-		delete *it;
-	}
+  for (vector<ChessMove *>::iterator it = moves.begin(); it != moves.end(); it++) {
+    delete *it;
+  }
 }
 
 ChessGameResult ChessGame::run() {
-	whiteAlgorithm->start();
-	blackAlgorithm->start();	
+  whiteAlgorithm->start();
+  blackAlgorithm->start();
 
-	ChessMove *whiteMove;
-	ChessMove *blackMove;
+  ChessMove *whiteMove;
+  ChessMove *blackMove;
 
-	whiteMove = new ChessMove(board, whiteAlgorithm->getFirstMove());
-	while (true) {
-		if (applyMove(whiteAlgorithm, blackAlgorithm, whiteMove)) {
-			break;
-		}
-		blackMove = new ChessMove(board, blackAlgorithm->getMove(whiteMove->toString()));
+  whiteMove = new ChessMove(board, whiteAlgorithm->getFirstMove());
+  while (true) {
+    if (applyMove(whiteAlgorithm, blackAlgorithm, whiteMove)) {
+      break;
+    }
 
-		if (applyMove(blackAlgorithm, whiteAlgorithm, blackMove)) {
-			break;
-		}
-		whiteMove = new ChessMove(board, whiteAlgorithm->getMove(blackMove->toString()));
-	}
+    blackMove = new ChessMove(board, blackAlgorithm->getMove(whiteMove->toString()));
+    if (applyMove(blackAlgorithm, whiteAlgorithm, blackMove)) {
+      break;
+    }
 
-	whiteAlgorithm->stop();
-	blackAlgorithm->stop();
+    whiteMove = new ChessMove(board, whiteAlgorithm->getMove(blackMove->toString()));
+  }
+
+  whiteAlgorithm->stop();
+  blackAlgorithm->stop();
 }
 
 bool ChessGame::applyMove(ChessAlgorithm *applier, ChessAlgorithm *receiver, ChessMove *move) {
-	moves.push_back(move);
-	ChessMoveResult result = board->performMove(move);
+  moves.push_back(move);
+  ChessMoveResult result = board->performMove(move);
 
-	switch (result) {
-		case Checkmate:
-			applier->didFinish(WinByCheckmate);
-			receiver->didFinish(LoseByCheckmate);
-			return true;
-		case Error:
-			applier->didFinish(LoseByIllegalMove);
-			receiver->didFinish(WinByIllegalMove);
-			return true;
-		case Continue:
-			return false;
-	}
+  switch (result) {
+    case Checkmate:
+      applier->didFinish(WinByCheckmate);
+      receiver->didFinish(LoseByCheckmate);
+      return true;
+    case Error:
+      applier->didFinish(LoseByIllegalMove);
+      receiver->didFinish(WinByIllegalMove);
+      return true;
+    case Continue:
+      return false;
+  }
 }

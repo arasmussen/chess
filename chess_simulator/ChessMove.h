@@ -12,40 +12,40 @@ class ChessPiece;
 class ChessBoard;
 
 enum ChessMoveType {
-	Normal,
-	WhiteQueenSideCastle,
-	WhiteKingSideCastle,
-	BlackQueenSideCastle,
-	BlackKindSideCastle
+  Normal,
+  WhiteQueenSideCastle,
+  WhiteKingSideCastle,
+  BlackQueenSideCastle,
+  BlackKindSideCastle
 };
 
 class ChessMove {
-	public:
-		const ChessPiece *piece;
-		BoardPosition* initialPosition;
-		BoardPosition* finalPosition;
+  public:
+    const ChessPiece *piece;
+    BoardPosition* initialPosition;
+    BoardPosition* finalPosition;
 
-		~ChessMove();
+    ~ChessMove();
 
-		// For special moves like castles and en passe.
-		ChessMove *special;
-		ChessMoveType type;
+    // For special moves like castles and en passe.
+    ChessMove *special;
+    ChessMoveType type;
 
-		// Normal moves
-		ChessMove(const ChessBoard* board, shared_ptr<string> move);
-		ChessMove(const ChessPiece* piece, BoardPosition* initial, BoardPosition* final); 
-		
-		// Castles
-		// ChessMove(ChessMoveType type);
+    // Normal moves
+    ChessMove(const ChessBoard* board, shared_ptr<string> move);
+    ChessMove(const ChessPiece* piece, BoardPosition* initial, BoardPosition* final); 
+    
+    // Castles
+    // ChessMove(ChessMoveType type);
 
-		// En Passent
-		// TODO: Implement
+    // En Passent
+    // TODO: Implement
 
-		bool isValid();
-		const string& toString();
-	
-	private:
-		shared_ptr<string> stringRep;
+    bool isValid();
+    const string& toString();
+  
+  private:
+    shared_ptr<string> stringRep;
 };
 
 #endif

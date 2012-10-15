@@ -15,20 +15,12 @@ using boost::shared_ptr;
 
 class ChessGameServerHandler : virtual public ChessGameServerIf {
  public:
-  ChessGameServerHandler() : 
-		manager(new ChessGameManager())
-	{}
-
-	~ChessGameServerHandler() {
-		delete manager;
-	}
-
   void startgame(const std::string& whiteAlgorithm, const std::string& blackAlgorithm) {
-		manager->startGame(whiteAlgorithm.c_str(), blackAlgorithm.c_str());
+    manager.startGame(whiteAlgorithm.c_str(), blackAlgorithm.c_str());
   }
 
-	private:
-		ChessGameManager *manager;
+  private:
+    ChessGameManager manager;
 };
 
 int main(int argc, char **argv) {
@@ -43,4 +35,3 @@ int main(int argc, char **argv) {
   server.serve();
   return 0;
 }
-

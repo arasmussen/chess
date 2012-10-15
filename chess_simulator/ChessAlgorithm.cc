@@ -24,136 +24,136 @@ static const string kLoseByIllegalMove("Lose:IllegalMove");
 
 
 ChessAlgorithm::ChessAlgorithm(const string& algorithm, Color color) :
-	color(color) 
+  color(color)
 {
-	// Tokenize string
-	istringstream iss(algorithm);
-	copy(istream_iterator<string>(iss),
+  // Tokenize string
+  istringstream iss(algorithm);
+  copy(istream_iterator<string>(iss),
        istream_iterator<string>(),
        back_inserter<vector<string> >(tokens));
 
 }
 
 ChessAlgorithm::~ChessAlgorithm() {
-	close(writePipe[1]);
-	close(readPipe[0]);
+  close(writePipe[1]);
+  close(readPipe[0]);
 }
 
 void ChessAlgorithm::start() {
-	int pid;
+  int pid;
 
-	if (pipe(writePipe) || pipe(readPipe)) {
-		ERROR("Pipe Creation Failed");
-	}
+  if (pipe(writePipe) || pipe(readPipe)) {
+    ERROR("Pipe Creation Failed");
+  }
 
-	// Apparently this can happen and if it does things will break.
-	// Deal with it when it does.
-	if (writePipe[0] < 2 || writePipe[1] < 2 || readPipe[0] < 2 || readPipe[1] < 2) {
-		ERROR("Pipe creation weird case encountered!");
-	}
+  // Apparently this can happen and if it does things will break.
+  // Deal with it when it does.
+  if (writePipe[0] < 2 || writePipe[1] < 2 || readPipe[0] < 2 || readPipe[1] < 2) {
+    ERROR("Pipe creation weird case encountered!");
+  }
 
-	pid = fork();
-	if (pid < 0) {
-		ERROR("Fork Failed");
-	}
+  pid = fork();
+  if (pid < 0) {
+    ERROR("Fork Failed");
+  }
 
-	if (pid == 0) { // Child
-		close(writePipe[1]);
-		close(readPipe[0]);
+  if (pid == 0) { // Child
+    close(writePipe[1]);
+    close(readPipe[0]);
 
-		if (dup2(writePipe[0], 0) < 0) { // Replace stdin
-			ERROR("Replacing stdin failed");
-		}
+    if (dup2(writePipe[0], 0) < 0) { // Replace stdin
+      ERROR("Replacing stdin failed");
+    }
 
-		if (dup2(readPipe[1], 1) < 0) { // Replace stdout
-			ERROR("Replacing stdout failed");
-		}
+    if (dup2(readPipe[1], 1) < 0) { // Replace stdout
+      ERROR("Replacing stdout failed");
+    }
 
-		const char** argv;
-		if (tokens.size() > 0) {
-			argv = new const char* [tokens.size() + 1];
-			argv[tokens.size()] = NULL;
-			int i = 0;
-			for (vector<string>::iterator it = tokens.begin(); it != tokens.end(); it++, i++) {
-				argv[i] = it->c_str();
-			}
-		}
-		// Start algorithm
-		if (execv(argv[0], (char* const*)argv) < 0) {
-			ERROR("Execv failed");
-		} 
-	} else {
-		close(writePipe[0]);
-		close(readPipe[1]);
+    const char** argv;
+    if (tokens.size() > 0) {
+      argv = new const char* [tokens.size() + 1];
+      argv[tokens.size()] = NULL;
+      int i = 0;
+      for (vector<string>::iterator it = tokens.begin(); it != tokens.end(); it++, i++) {
+        argv[i] = it->c_str();
+      }
+    }
+    // Start algorithm
+    if (execv(argv[0], (char* const*)argv) < 0) {
+      ERROR("Execv failed");
+    }
+  } else {
+    close(writePipe[0]);
+    close(readPipe[1]);
 
-		// Let algorithm know which color it is.
-		writeToPipe(colorToString(color));
-	}
+    // Let algorithm know which color it is.
+    writeToPipe(colorToString(color));
+  }
 }
 
 void ChessAlgorithm::stop() {
-	int status;
-	wait(&status);
+  int status;
+  wait(&status);
 }
 
 shared_ptr<string> ChessAlgorithm::getFirstMove() {
-	return readFromPipe();
+  return readFromPipe();
 }
 
 shared_ptr<string> ChessAlgorithm::getMove(const string& sendMove) {
-	writeToPipe(sendMove);
+  writeToPipe(sendMove);
 
-	return readFromPipe();
+  return readFromPipe();
 }
 
 void ChessAlgorithm::didFinish(EndGameResult result) {
-	writeToPipe(endGameResultToString(result));
+  writeToPipe(endGameResultToString(result));
 }
 
 const string& ChessAlgorithm::colorToString(Color c) {
-	switch(c) {
-		case White:
-			return kWhitePlayer;
-		case Black:
-			return kBlackPlayer;
-		default:
-			ERROR("Invalid Color");
-	}
+  switch(c) {
+    case White:
+      return kWhitePlayer;
+    case Black:
+      return kBlackPlayer;
+    default:
+      ERROR("Invalid Color");
+  }
 }
 
 const string& ChessAlgorithm::endGameResultToString(EndGameResult result) {
-	switch (result) {
-		case WinByCheckmate:
-			return kWinByCheckmate;
-		case WinByIllegalMove:
-			return kWinByIllegalMove;
-		case LoseByCheckmate:
-			return kLoseByCheckmate;
-		case LoseByIllegalMove:
-			return kLoseByIllegalMove;
-		default:
-			ERROR("Invalid EndGameResult");
-	}
+  switch (result) {
+    case WinByCheckmate:
+      return kWinByCheckmate;
+    case WinByIllegalMove:
+      return kWinByIllegalMove;
+    case LoseByCheckmate:
+      return kLoseByCheckmate;
+    case LoseByIllegalMove:
+      return kLoseByIllegalMove;
+    default:
+      ERROR("Invalid EndGameResult");
+  }
 }
 
 shared_ptr<string> ChessAlgorithm::readFromPipe() {
-	char buf[30]; 
-	int bytesRead = read(readPipe[0], buf, 30);
-	
-	if (bytesRead < 0) {
-		ERROR("Read error");
-	}	
+  char buf[30];
+  int bytesRead = read(readPipe[0], buf, 30);
 
-	return shared_ptr<string>(new string(buf, bytesRead)); 
+  if (bytesRead < 0) {
+    ERROR("Read error");
+  }
+
+  return shared_ptr<string>(new string(buf, bytesRead));
 }
 
 void ChessAlgorithm::writeToPipe(const string& move) {
-	string sendMove = move;
-	sendMove.append("\n");
+  string sendMove = move;
+  sendMove.append("\n");
 
-	int bytesWritten = write(writePipe[1], sendMove.c_str(), sendMove.length()); 
-	if (bytesWritten < 0) {
-		ERROR("Write Error");
-	}
+  int bytesWritten = write(writePipe[1], sendMove.c_str(), sendMove.length());
+  if (bytesWritten < 0) {
+    ERROR("Write Error");
+  }
 
 }

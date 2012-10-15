@@ -8,21 +8,21 @@ class ChessMove;
 class BoardPosition;
 
 enum ChessMoveResult {
-	Continue,
-	Checkmate,
-	Error
+  Continue,
+  Checkmate,
+  Error
 };
 
 class ChessBoard {
-	public:
-		ChessBoard();
-		~ChessBoard();
-	
-	ChessMoveResult performMove(ChessMove *move);	
-	const ChessPiece *pieceAtPosition(BoardPosition* position) const;
+  public:
+    ChessBoard();
+    ~ChessBoard();
+  
+  ChessMoveResult performMove(ChessMove *move);  
+  const ChessPiece *pieceAtPosition(BoardPosition* position) const;
 
-	private:
-		ChessPiece *board [BOARD_SIZE][BOARD_SIZE];
+  private:
+    ChessPiece *board [BOARD_SIZE][BOARD_SIZE];
 };
 
 #endif

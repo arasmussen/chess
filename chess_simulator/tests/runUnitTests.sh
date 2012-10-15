@@ -3,8 +3,8 @@
 BUILD_DIR=${CHESS_ROOT}/bin
 
 for folder in `ls -d unitTests/*`; do
-	testCase=`basename ${folder}`
+  testCase=`basename ${folder}`
 
-	./runTest.sh ${testCase}
+  ./runTest.sh ${testCase}
 done
 

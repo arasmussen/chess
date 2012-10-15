@@ -4,26 +4,26 @@
 #include "BoardPosition.h"
 
 enum ChessPieceType {
-	Pawn,
-	Knight,
-	Bishop,
-	Rook,
-	Queen,
-	King
+  Pawn,
+  Knight,
+  Bishop,
+  Rook,
+  Queen,
+  King
 };
 
 enum ChessPieceColor {
-	White,
-	Black
+  White,
+  Black
 };
 
 class ChessPiece {
-	public:
-		ChessPieceColor color;
-		ChessPieceType type;
-		BoardPosition position;
+  public:
+    ChessPieceColor color;
+    ChessPieceType type;
+    BoardPosition position;
 
-		ChessPiece(ChessPieceColor color, ChessPieceType type, BoardPosition &position);
+    ChessPiece(ChessPieceColor color, ChessPieceType type, BoardPosition &position);
 };
 
 #endif

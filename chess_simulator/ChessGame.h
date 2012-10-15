@@ -10,27 +10,28 @@ class ChessMove;
 class ChessAlgorithm;
 
 enum ChessGameResult {
-	WhiteWin,
-	BlackWin,
-	Stalemate
+  WhiteWin,
+  BlackWin,
+  Stalemate,
+  Draw
 };
 
 class ChessGame {
-	public:
-		ChessGame(const string& whiteAlgorithm, const string& blackAlgorithm);
-		~ChessGame();
+  public:
+    ChessGame(const string& whiteAlgorithm, const string& blackAlgorithm);
+    ~ChessGame();
 
-		ChessGameResult run();
+    ChessGameResult run();
 
-	private:
-		ChessAlgorithm *whiteAlgorithm;
-		ChessAlgorithm *blackAlgorithm;
+  private:
+    ChessAlgorithm *whiteAlgorithm;
+    ChessAlgorithm *blackAlgorithm;
 
-		// State of the board
-		ChessBoard *board;
-		vector<ChessMove *> moves;
+    // State of the board
+    ChessBoard *board;
+    vector<ChessMove *> moves;
 
-		bool applyMove(ChessAlgorithm *applier, ChessAlgorithm *receiver, ChessMove *move);
+    bool applyMove(ChessAlgorithm *applier, ChessAlgorithm *receiver, ChessMove *move);
 };
 
 #endif

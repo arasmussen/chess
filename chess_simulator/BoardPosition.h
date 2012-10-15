@@ -7,14 +7,14 @@
 using namespace std;
 
 class BoardPosition {
-	public:
-		int row, column;
+  public:
+    int row, column;
 
-		BoardPosition();
-		BoardPosition(int row, int column);
-		BoardPosition(const string& pos);
+    BoardPosition();
+    BoardPosition(int row, int column);
+    BoardPosition(const string& pos);
 
-		bool isValid();
+    bool isValid();
 };
 
 
