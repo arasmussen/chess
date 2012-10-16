@@ -1,4 +1,4 @@
-BUILD_DIR=${CHESS_ROOT}/bin
+BUILD_DIR=${CPP_CHESS_ROOT}/bin
 
 testCase=${1}
 folder=`find -name ${testCase}`

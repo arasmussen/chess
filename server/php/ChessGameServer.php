@@ -6,7 +6,7 @@ require_once(getenv('THRIFT_PHP_DIR').'/transport/TSocket.php');
 require_once(getenv('THRIFT_PHP_DIR').'/transport/THttpClient.php');
 require_once(getenv('THRIFT_PHP_DIR').'/transport/TBufferedTransport.php');
 
-$GEN_DIR = getenv('CHESS_ROOT').'/thrift/gen-php';
+$GEN_DIR = getenv('PHP_CHESS_ROOT').'/thrift/gen-php';
 require_once($GEN_DIR.'/ChessGameServer.php');
 require_once($GEN_DIR.'/ChessGameServer_types.php');
 
