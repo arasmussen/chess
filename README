@@ -1,0 +1,23 @@
+--About--
+This project's goal is to let users upload their chess AIs to our website and
+then see how they compare to other user's AIs and also watch games online.
+
+--Building--
+I have the following environment variables defined in my .bashrc:
+
+export CPP_CHESS_ROOT=~/chess
+export PHP_CHESS_ROOT=C:/cygwin/home/Andrew/chess
+export BOOST_DIR=/usr/include/boost
+export THRIFT_CPP_DIR=/usr/thrift-0.8.0/lib/cpp/src
+export THRIFT_PHP_DIR=C:/cygwin/usr/thrift-0.8.0/lib/php/src
+export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
+
+Since Andrew's developing in Cygwin, g++ uses cygwin style paths and php uses
+windows style paths, which is why we have a separate path for CPP_CHESS_ROOT and
+PHP_CHESS_ROOT even though they are both technically the root directory. We are
+still looking for a workaround for this.
+
+After setting up environment variables, go to chess/server/cpp and make, which
+will place the startServer binary in chess/bin. Running this will start a
+service which will be able to keep track of current games initiated from php
+code in chess/server/php via thrift.
