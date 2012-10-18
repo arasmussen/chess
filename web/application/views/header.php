@@ -8,3 +8,6 @@
   </head>
   <body>
     <div id="center">
+      <div id="header">
+        
+      </div>
