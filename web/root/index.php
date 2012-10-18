@@ -56,7 +56,7 @@ if (defined('ENVIRONMENT'))
  * as this file.
  *
  */
-	$system_path = getenv('PHP_CHESS_ROOT') . '/system';
+	$system_path = getenv('PHP_CHESS_ROOT') . '/web/system';
 
 /*
  *---------------------------------------------------------------
@@ -72,7 +72,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = getenv('PHP_CHESS_ROOT') . '/application';
+	$application_folder = getenv('PHP_CHESS_ROOT') . '/web/application';
 
 /*
  * --------------------------------------------------------------------
