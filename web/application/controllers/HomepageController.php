@@ -1,9 +1,10 @@
 <?php
-require_once('PageController.php');
 
-class HomepageController extends PageController {
+class HomepageController extends CI_Controller {
   public function index() {
+    $this->load->view('header');
     $this->load->view('homepage');
+    $this->load->view('footer');
   }
 }
 
