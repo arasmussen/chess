@@ -13,6 +13,7 @@ export THRIFT_PHP_DIR=C:/cygwin/usr/thrift-0.8.0/lib/php/src
 export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
 export CHESS_READ_PASSWORD={read password}
 export CHESS_WRITE_PASSWORD={write password}
+export CHESS_ADMIN_PASSWORD={admin password}
 
 Since Andrew's developing in Cygwin, g++ uses cygwin style paths and php uses
 windows style paths, which is why we have a separate path for CPP_CHESS_ROOT and
