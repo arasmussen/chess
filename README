@@ -19,6 +19,11 @@ windows style paths, which is why we have a separate path for CPP_CHESS_ROOT and
 PHP_CHESS_ROOT even though they are both technically the root directory. We are
 still looking for a workaround for this.
 
+(Windows): In addition to setting environment variables in cygwin for building,
+you'll also have to set windows environment variables for the actual execution
+of the cpp and php programs since the runtime uses windows env vars rather than
+cygwin env vars.
+
 After setting up environment variables, go to chess/server/cpp and make, which
 will place the startServer binary in chess/bin. Running this will start a
 service which will be able to keep track of current games initiated from php

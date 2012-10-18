@@ -8,7 +8,7 @@ LIBS = /usr/local/lib
 
 MAIN_FILE = ChessGameServerHandler.cc
 
-THRIFT_SRC_DIR = $(CPP_CHESS_ROOT)/thrift/gen-cpp
+THRIFT_SRC_DIR = $(CPP_CHESS_ROOT)/server/thrift/gen-cpp
 THRIFT_SRCS = $(addprefix $(THRIFT_SRC_DIR)/, ChessGameServer.cpp ChessGameServer_constants.cpp ChessGameServer_types.cpp)
 
 $(BUILD_DIR)/%.o : %.cc %.h
