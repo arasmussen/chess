@@ -4,8 +4,7 @@
     <title>Chess AI</title>
     <link rel="stylesheet" type="text/css" href="/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="/css/styles.css" />
-    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="/js/scripts.js"></script>
+    <script data-main="/js/<?php echo $page; ?>" src="/js/require.js"></script>
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
   </head>
   <body>
@@ -22,16 +21,16 @@
         <?php } else { ?>
           <div id="login">
             <form method="post" action="javascript:void(0)">
-              <div id="loginEmail">
-                <label>Email</label>
-                <input type="text" name="email">
+              <div id="loginUsername">
+                <label>Username</label>
+                <input type="text" name="username" />
               </div>
               <div id="loginPassword">
                 <label>Password</label>
-                <input type="password" name="password">
+                <input type="password" name="password" />
               </div>
               <div id="loginButton">
-                <input type="submit" value="Sign in">
+                <input type="submit" value="Sign in" />
               </div>
             </form>
           </div>

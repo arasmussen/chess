@@ -42,7 +42,7 @@ $config['phpass_hash_strength'] = 8;
 $config['allow_registration'] = TRUE;
 $config['captcha_registration'] = TRUE;
 $config['email_activation'] = TRUE;
-$config['email_activation_expire'] = 60*60*24*2;
+$config['email_activation_expire'] = 60*60*24*1;
 $config['email_account_details'] = TRUE;
 $config['use_username'] = TRUE;
 
@@ -94,7 +94,7 @@ $config['autologin_cookie_life'] = 60*60*24*31*2;
 | 'forgot_password_expire' = Time before forgot password key become invalid. Default is 15 minutes (60*15).
 |--------------------------------------------------------------------------
 */
-$config['forgot_password_expire'] = 60*15;
+$config['forgot_password_expire'] = 60*20;
 
 /*
 |--------------------------------------------------------------------------
