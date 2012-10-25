@@ -32,14 +32,14 @@
   margin-top: 10px;
 }
 
-#login #loginEmail,
+#login #loginUsername,
 #login #loginPassword {
   float: left;
   width: 150px;
   height: 50px;
 }
 
-#login #loginEmail.failed input,
+#login #loginUsername.failed input,
 #login #loginPassword.failed input {
   border: 1px solid #f00;
 }
