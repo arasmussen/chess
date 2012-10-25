@@ -29,3 +29,6 @@ After setting up environment variables, go to chess/server/cpp and make, which
 will place the startServer binary in chess/bin. Running this will start a
 service which will be able to keep track of current games initiated from php
 code in chess/server/php via thrift.
+
+If you're running the site live on apache, make sure to use SetEnv to set the
+above environment variables.
