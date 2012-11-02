@@ -14,6 +14,7 @@ export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
 export CHESS_READ_PASSWORD={read password}
 export CHESS_WRITE_PASSWORD={write password}
 export CHESS_ADMIN_PASSWORD={admin password}
+export DB_ROOT_PASSWORD={db root password}
 
 Since Andrew's developing in Cygwin, g++ uses cygwin style paths and php uses
 windows style paths, which is why we have a separate path for CPP_CHESS_ROOT and
@@ -32,3 +33,15 @@ code in chess/server/php via thrift.
 
 If you're running the site live on apache, make sure to use SetEnv to set the
 above environment variables.
+
+--Database Backup--
+Everytime you make a git commit on the ec2 server, chess_root/pre-commit.sh is
+run, which currently dumps the database into chess_root/web/db.sql. This is
+convenient so that you can have the same copy of the database as the server,
+including tables, data, everything. You'll have to set a symlink from
+.git/hooks/pre-commit to this file by doing the following:
+
+ln -s $CPP_CHESS_ROOT/.pre-commit.sh $CPP_CHESS_ROOT/.git/hooks/pre-commit
+
+Note that this means that your db copy will also be committed to the server
+every time you commit, so make sure you only do this if you want that to happen.
