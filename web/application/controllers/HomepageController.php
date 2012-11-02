@@ -57,7 +57,7 @@ class HomepageController extends BaseController {
     }
   }
 
-  public function sendActivationEmail($data) {
+  private function sendActivationEmail($data) {
     $to = $data['email'];
     $subject = 'Venzio Account Activation';
     $url =
