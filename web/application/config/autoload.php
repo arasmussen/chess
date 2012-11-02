@@ -52,7 +52,13 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'session', 'tank_auth');
+$autoload['libraries'] = array(
+  'amazon_ses',
+  'curl',
+  'database',
+  'session',
+  'tank_auth'
+);
 
 
 /*

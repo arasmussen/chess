@@ -41,9 +41,9 @@ class HomepageController extends BaseController {
     $username = $this->input->post('username');
     $password = $this->input->post('password');
 
-    if (
-      $this->tank_auth->create_user($username, $email, $password, true) !== null
-    ) {
+    $data = $this->tank_auth->create_user($username, $email, $password, true);
+    if ($data !== null) {
+      $this->sendActivationEmail($data);
       echo 'success';
     } else {
       $error = $this->tank_auth->get_error_message();
@@ -55,6 +55,34 @@ class HomepageController extends BaseController {
         echo 'invalid data';
       }
     }
+  }
+
+  public function sendActivationEmail($data) {
+    $to = $data['email'];
+    $subject = 'Venzio Account Activation';
+    $url =
+      'http://www.venz.io/index.php/HomepageController/activate?username=' .
+      $data['username'] .
+      '&key=' .
+      $data['new_email_key'];
+    $message =
+      '<html>' .
+        '<head>' .
+          '<title>Venzio Account Activation</title>' .
+        '</head>' .
+        '<body>' .
+          '<p>Thanks for signing up for Venzio Chess AI!</p>' .
+          '<p>Activate your account by clicking on ' .
+            '<a href="' . $url . '">this link</a>.' .
+          '</p>' .
+        '</body>' .
+      '</html>';
+
+    $this->amazon_ses->to($to);
+    $this->amazon_ses->from('arasmussen@katworks.com');
+    $this->amazon_ses->subject($subject);
+    $this->amazon_ses->message($message);
+    $this->amazon_ses->send();
   }
 }
 
