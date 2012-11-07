@@ -38,7 +38,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('71236b8be7b4991ee7caf0ef60edb729','173.34.188.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352317532,''),('d7e0111ddf931b09c72fb3b0a34a5f7d','173.34.188.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352316958,''),('e0cc8ece354fcda3d644480f7a9a401d','173.34.188.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352316949,'');
+INSERT INTO `ci_sessions` VALUES ('e818819f5fcbad63528029f06a237d49','173.34.188.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352326880,'a:3:{s:7:\"user_id\";s:2:\"10\";s:8:\"username\";s:6:\"andrew\";s:6:\"status\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +55,7 @@ CREATE TABLE `login_attempts` (
   `login` varchar(50) COLLATE utf8_bin NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `login_attempts` (
 
 LOCK TABLES `login_attempts` WRITE;
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
-INSERT INTO `login_attempts` VALUES (11,'173.34.188.170','andrew','2012-11-07 19:45:38');
+INSERT INTO `login_attempts` VALUES (16,'173.34.188.170','asdf','2012-11-07 19:54:29'),(17,'173.34.188.170','asdf','2012-11-07 19:55:54'),(18,'173.34.188.170','asdf','2012-11-07 19:55:55'),(19,'173.34.188.170','asdf','2012-11-07 19:56:09'),(20,'173.34.188.170','asdf','2012-11-07 19:56:15');
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,6 +91,7 @@ CREATE TABLE `user_autologin` (
 
 LOCK TABLES `user_autologin` WRITE;
 /*!40000 ALTER TABLE `user_autologin` DISABLE KEYS */;
+INSERT INTO `user_autologin` VALUES ('de74b0079e84e8fe1bd333f8f2888a79',10,'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4','173.34.188.170','2012-11-07 22:21:25');
 /*!40000 ALTER TABLE `user_autologin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +154,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (10,'andrew','$2a$08$vb49UmNiQN/AkOs3yfvEMOifGBaOI/twgKQCxZuPZyn5uzfBUm/bK','arasmussen@katworks.com',1,0,NULL,NULL,NULL,NULL,NULL,'173.34.188.170','2012-11-07 14:45:31','2012-11-07 12:41:06','2012-11-07 19:45:31');
+INSERT INTO `users` VALUES (10,'andrew','$2a$08$vb49UmNiQN/AkOs3yfvEMOifGBaOI/twgKQCxZuPZyn5uzfBUm/bK','arasmussen@katworks.com',1,0,NULL,NULL,NULL,NULL,NULL,'173.34.188.170','2012-11-07 17:21:25','2012-11-07 12:41:06','2012-11-07 22:21:25');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -166,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-11-07 19:45:55
+-- Dump completed on 2012-11-07 22:28:22

@@ -46,19 +46,17 @@
   height: 50px;
 }
 
-#login input.failed {
-  border: 1px solid #f00;
-}
-
 #login label,
-#login label {
+#register label {
   font-size: 11px;
   display: block;
   width: 150px;
 }
 
 #login input[type="text"],
-#login input[type="password"] {
+#login input[type="password"],
+#register input[type="text"],
+#register input[type="password"] {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: inset 1px 1px 4px #ddd;
@@ -69,28 +67,32 @@
   width: 120px;
 }
 
-#login input[type="text"]:focus,
-#login input[type="password"]:focus {
-  border: 1px solid #acf;
-}
-
 #login #loginButton {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-top: 13px;
   float: left;
-  width: 55px;
 }
 
-#login #loginButton:hover {
-  border: 1px solid #acf;
+#register #registerButton {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 13px;
+  width: 60px;
 }
 
-#login #loginButton.disabled:hover {
+#login #loginButton:hover,
+#register #registerButton:hover {
+  border: 1px solid #68b;
+}
+
+#login #loginButton.disabled:hover,
+#register #registerButton.disabled:hover {
   border: 1px solid #ccc;
 }
 
-#login input[type="submit"] {
+#login input[type="submit"],
+#register input[type="submit"] {
   background: #fff;
   border: none;
   border-radius: 4px;
@@ -100,11 +102,13 @@
   width: 55px;
 }
 
-#login input[type="submit"][disabled="disabled"] {
+#login input[type="submit"][disabled="disabled"],
+#register input[type="submit"][disabled="disabled"] {
   background: #eee;
   color: #aaa;
 }
 
+#login input.failed,
 #register input.failed {
   border: 1px solid #f00;
 }

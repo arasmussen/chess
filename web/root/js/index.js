@@ -24,7 +24,7 @@ requirejs(['jquery', 'auth'], function($, auth) {
 
   function initializeLogin() {
     $('#login form input').bind('keyup', function() {
-      $(this).removeClass('failed');
+      $('#login form input').removeClass('failed');
     });
     $('#login form').bind('submit', function() {
       var username = $(this).find('input[name="username"]').val();
@@ -71,7 +71,7 @@ requirejs(['jquery', 'auth'], function($, auth) {
 
   function initializeRegister() {
     $('#register form input').bind('keyup', function() {
-      $(this).removeClass('failed');
+      $('#register form input').removeClass('failed');
     });
     $('#register form').bind('submit', function() {
       var email = $(this).find('input[name="email"]').val();
