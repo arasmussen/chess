@@ -18,6 +18,9 @@
               <?php echo $username; ?>
             </a>
           </div>
+          <div id="logout">
+            <a href="/home/logout">Logout</a>
+          </div>
         <?php } else { ?>
           <div id="login">
             <form method="post" action="javascript:void(0)">

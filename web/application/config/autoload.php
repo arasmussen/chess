@@ -56,6 +56,7 @@ $autoload['libraries'] = array(
   'amazon_ses',
   'curl',
   'database',
+  'form_validation',
   'session',
   'tank_auth'
 );

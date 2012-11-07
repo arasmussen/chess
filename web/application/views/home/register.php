@@ -12,6 +12,10 @@
       <label>Password</label>
       <input type="password" name="password" />
     </div>
+    <div id="registerConfirm">
+      <label>Confirm Password</label>
+      <input type="password" name="confirm" />
+    </div>
     <div id="registerButton">
       <input type="submit" value="Register" />
     </div>

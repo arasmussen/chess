@@ -1,15 +1,15 @@
 <?php
 require_once('AuthController.php');
 
-class DashboardController extends AuthController {
+class dashboard extends AuthController {
   public function __construct() {
     parent::__construct('dashboard');
   }
 
-  public function dashboard() {
+  public function index() {
     $this->pre();
 
-    $this->load->view('dashboard');
+    $this->load->view('dashboard/dashboard');
 
     $this->post();
   }

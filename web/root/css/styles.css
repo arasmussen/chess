@@ -39,8 +39,7 @@
   height: 50px;
 }
 
-#login #loginUsername.failed input,
-#login #loginPassword.failed input {
+#login input.failed {
   border: 1px solid #f00;
 }
 
@@ -97,6 +96,10 @@
 #login input[type="submit"][disabled="disabled"] {
   background: #eee;
   color: #aaa;
+}
+
+#register input.failed {
+  border: 1px solid #f00;
 }
 
 /* chess board */

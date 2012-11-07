@@ -38,7 +38,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('0fd667f819c6fe81e5efc9d0eba34a8b','74.125.17.85','Google-Site-Verification/1.0',1351858301,''),('23bdcccfcc72251ccf820e1045b7e9d4','74.125.16.221','Google-Site-Verification/1.0',1351858300,''),('274bc31010de6ea0c3cfc5e0e0a4239c','74.125.189.19','Google-Site-Verification/1.0',1351858304,''),('2fd2bee754b94ddc43ae17aec6537f06','74.125.17.82','Google-Site-Verification/1.0',1351858301,''),('45e2f08e67af25c38237f45ead8396ab','64.233.162.83','Google-Site-Verification/1.0',1351858302,''),('4adbd4519a8a8de62e87faa37926b927','74.125.186.22','Google-Site-Verification/1.0',1351858303,''),('4e222c278e446dfc751c8b450b654447','74.125.16.82','Google-Site-Verification/1.0',1351858300,''),('565b5c862147e86ac6bde05967a0a60a','173.194.99.81','Google-Site-Verification/1.0',1351858298,''),('7408d1a3864c7c60707ad4280944c9a4','74.125.176.38','Google-Site-Verification/1.0',1351858299,''),('85cbce1d52628491dab021e28e901a57','86.148.174.94','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1351889993,''),('92333edb87f53d567f27c9d2c9a585de','74.125.191.19','Google-Site-Verification/1.0',1351858297,''),('9f49b9e323f5fca6d77ece8f3f445853','74.125.178.28','Google-Site-Verification/1.0',1351858302,''),('a396eec792fbe06e087ad093acfd0f14','74.125.18.222','Google-Site-Verification/1.0',1351858303,''),('a56debbf6fed81a584345ef8f97c70a8','74.125.178.18','Google-Site-Verification/1.0',1351858296,''),('b2429464486839f45dda1dd11662977e','72.14.199.26','Google-Site-Verification/1.0',1351858238,''),('bb648dbfd8e8bb265a818b0acc3e2759','41.207.42.2','Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',1351778768,''),('bcd2b7babb191ed36ecbb2e7c84a9c42','74.125.183.23','Google-Site-Verification/1.0',1351858297,''),('c240b49d6e88a746669cb672cf75c409','74.125.186.146','Google-Site-Verification/1.0',1351858298,''),('da8aa05da85557af403901e08e568d8a','173.194.98.16','Google-Site-Verification/1.0',1351858298,''),('dc6b8adbc6fd63c85c1ba6991f397303','74.125.184.21','Google-Site-Verification/1.0',1351858301,''),('e1816f919e3819f5138879f87e56e244','18.111.26.145','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1351894741,''),('eca86ccd491c10f70b95a9c124658b3f','74.125.18.155','Google-Site-Verification/1.0',1351858304,'');
+INSERT INTO `ci_sessions` VALUES ('05ceb25807d245cf81b38e320efcd0e2','173.34.188.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352310577,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +55,7 @@ CREATE TABLE `login_attempts` (
   `login` varchar(50) COLLATE utf8_bin NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +106,7 @@ CREATE TABLE `user_profiles` (
   `country` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `website` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,6 +115,7 @@ CREATE TABLE `user_profiles` (
 
 LOCK TABLES `user_profiles` WRITE;
 /*!40000 ALTER TABLE `user_profiles` DISABLE KEYS */;
+INSERT INTO `user_profiles` VALUES (3,10,NULL,NULL);
 /*!40000 ALTER TABLE `user_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +143,7 @@ CREATE TABLE `users` (
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,6 +152,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (10,'andrew','$2a$08$vb49UmNiQN/AkOs3yfvEMOifGBaOI/twgKQCxZuPZyn5uzfBUm/bK','arasmussen@katworks.com',1,0,NULL,NULL,NULL,NULL,NULL,'173.34.188.170','2012-11-07 12:49:31','2012-11-07 12:41:06','2012-11-07 17:49:31');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -163,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-11-02 22:39:08
+-- Dump completed on 2012-11-07 17:53:36

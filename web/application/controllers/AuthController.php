@@ -6,7 +6,7 @@ abstract class AuthController extends BaseController {
     parent::__construct($page);
 
     if (!$this->tank_auth->is_logged_in()) {
-      header('Location: /index.php/HomepageController/index');
+      header('Location: /');
     }
   }
 }
