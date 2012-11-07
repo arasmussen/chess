@@ -38,7 +38,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('05ceb25807d245cf81b38e320efcd0e2','173.34.188.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352310577,'');
+INSERT INTO `ci_sessions` VALUES ('71236b8be7b4991ee7caf0ef60edb729','173.34.188.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352317532,''),('d7e0111ddf931b09c72fb3b0a34a5f7d','173.34.188.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352316958,''),('e0cc8ece354fcda3d644480f7a9a401d','173.34.188.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352316949,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +55,7 @@ CREATE TABLE `login_attempts` (
   `login` varchar(50) COLLATE utf8_bin NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +64,7 @@ CREATE TABLE `login_attempts` (
 
 LOCK TABLES `login_attempts` WRITE;
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
+INSERT INTO `login_attempts` VALUES (11,'173.34.188.170','andrew','2012-11-07 19:45:38');
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +153,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (10,'andrew','$2a$08$vb49UmNiQN/AkOs3yfvEMOifGBaOI/twgKQCxZuPZyn5uzfBUm/bK','arasmussen@katworks.com',1,0,NULL,NULL,NULL,NULL,NULL,'173.34.188.170','2012-11-07 12:49:31','2012-11-07 12:41:06','2012-11-07 17:49:31');
+INSERT INTO `users` VALUES (10,'andrew','$2a$08$vb49UmNiQN/AkOs3yfvEMOifGBaOI/twgKQCxZuPZyn5uzfBUm/bK','arasmussen@katworks.com',1,0,NULL,NULL,NULL,NULL,NULL,'173.34.188.170','2012-11-07 14:45:31','2012-11-07 12:41:06','2012-11-07 19:45:31');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -165,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-11-07 17:53:36
+-- Dump completed on 2012-11-07 19:45:55
