@@ -65,7 +65,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('842766d32aa7e687c13ec1ca73528821','12.207.20.2','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352523173,'a:4:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:2:\"10\";s:8:\"username\";s:6:\"andrew\";s:6:\"status\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('ec964de4e6876c475c84fde7285cdbb0','12.207.20.2','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352523314,'a:4:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:2:\"10\";s:8:\"username\";s:6:\"andrew\";s:6:\"status\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,7 @@ CREATE TABLE `user_autologin` (
 
 LOCK TABLES `user_autologin` WRITE;
 /*!40000 ALTER TABLE `user_autologin` DISABLE KEYS */;
-INSERT INTO `user_autologin` VALUES ('04bd2923266897e241267a5dd66a011b',10,'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A525 Safari/8536.25','12.207.20.2','2012-11-10 00:43:51'),('4a050558f93c492e419d26ea71e33c25',10,'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4','12.207.20.2','2012-11-10 02:05:07'),('9ba8fabfe50b034f84784571f48a994c',10,'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4','173.34.188.170','2012-11-08 01:13:43');
+INSERT INTO `user_autologin` VALUES ('04bd2923266897e241267a5dd66a011b',10,'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A525 Safari/8536.25','12.207.20.2','2012-11-10 00:43:51'),('96560b1296a0294cab3037187fd32b78',10,'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4','12.207.20.2','2012-11-10 04:55:18'),('9ba8fabfe50b034f84784571f48a994c',10,'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4','173.34.188.170','2012-11-08 01:13:43');
 /*!40000 ALTER TABLE `user_autologin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,7 +180,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (10,'andrew','$2a$08$vb49UmNiQN/AkOs3yfvEMOifGBaOI/twgKQCxZuPZyn5uzfBUm/bK','arasmussen@katworks.com',1,0,NULL,NULL,NULL,NULL,NULL,'12.207.20.2','2012-11-09 21:05:07','2012-11-07 12:41:06','2012-11-10 02:05:07');
+INSERT INTO `users` VALUES (10,'andrew','$2a$08$vb49UmNiQN/AkOs3yfvEMOifGBaOI/twgKQCxZuPZyn5uzfBUm/bK','arasmussen@katworks.com',1,0,NULL,NULL,NULL,NULL,NULL,'12.207.20.2','2012-11-09 23:55:18','2012-11-07 12:41:06','2012-11-10 04:55:18');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -193,4 +193,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-11-10  4:54:08
+-- Dump completed on 2012-11-10  4:59:36

@@ -1,4 +1,5 @@
 .DS_Store
 /bin
 /test
-/web/bots
+/web/bots/*
+/web/application/logs/*_log
