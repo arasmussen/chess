@@ -16,6 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `bots`
+--
+
+DROP TABLE IF EXISTS `bots`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bots` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(25) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `language` varchar(25) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`name`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bots`
+--
+
+LOCK TABLES `bots` WRITE;
+/*!40000 ALTER TABLE `bots` DISABLE KEYS */;
+INSERT INTO `bots` VALUES (3,10,'First Bot','C++');
+/*!40000 ALTER TABLE `bots` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ci_sessions`
 --
 
@@ -38,7 +65,7 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('e818819f5fcbad63528029f06a237d49','173.34.188.170','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352326880,'a:3:{s:7:\"user_id\";s:2:\"10\";s:8:\"username\";s:6:\"andrew\";s:6:\"status\";s:1:\"1\";}');
+INSERT INTO `ci_sessions` VALUES ('842766d32aa7e687c13ec1ca73528821','12.207.20.2','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4',1352523173,'a:4:{s:9:\"user_data\";s:0:\"\";s:7:\"user_id\";s:2:\"10\";s:8:\"username\";s:6:\"andrew\";s:6:\"status\";s:1:\"1\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +91,6 @@ CREATE TABLE `login_attempts` (
 
 LOCK TABLES `login_attempts` WRITE;
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
-INSERT INTO `login_attempts` VALUES (16,'173.34.188.170','asdf','2012-11-07 19:54:29'),(17,'173.34.188.170','asdf','2012-11-07 19:55:54'),(18,'173.34.188.170','asdf','2012-11-07 19:55:55'),(19,'173.34.188.170','asdf','2012-11-07 19:56:09'),(20,'173.34.188.170','asdf','2012-11-07 19:56:15');
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +117,7 @@ CREATE TABLE `user_autologin` (
 
 LOCK TABLES `user_autologin` WRITE;
 /*!40000 ALTER TABLE `user_autologin` DISABLE KEYS */;
-INSERT INTO `user_autologin` VALUES ('de74b0079e84e8fe1bd333f8f2888a79',10,'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4','173.34.188.170','2012-11-07 22:21:25');
+INSERT INTO `user_autologin` VALUES ('04bd2923266897e241267a5dd66a011b',10,'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A525 Safari/8536.25','12.207.20.2','2012-11-10 00:43:51'),('4a050558f93c492e419d26ea71e33c25',10,'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4','12.207.20.2','2012-11-10 02:05:07'),('9ba8fabfe50b034f84784571f48a994c',10,'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.94 Safari/537.4','173.34.188.170','2012-11-08 01:13:43');
 /*!40000 ALTER TABLE `user_autologin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +180,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (10,'andrew','$2a$08$vb49UmNiQN/AkOs3yfvEMOifGBaOI/twgKQCxZuPZyn5uzfBUm/bK','arasmussen@katworks.com',1,0,NULL,NULL,NULL,NULL,NULL,'173.34.188.170','2012-11-07 17:21:25','2012-11-07 12:41:06','2012-11-07 22:21:25');
+INSERT INTO `users` VALUES (10,'andrew','$2a$08$vb49UmNiQN/AkOs3yfvEMOifGBaOI/twgKQCxZuPZyn5uzfBUm/bK','arasmussen@katworks.com',1,0,NULL,NULL,NULL,NULL,NULL,'12.207.20.2','2012-11-09 21:05:07','2012-11-07 12:41:06','2012-11-10 02:05:07');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -167,4 +193,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-11-07 22:28:22
+-- Dump completed on 2012-11-10  4:54:08

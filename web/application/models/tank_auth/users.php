@@ -52,7 +52,7 @@ class Users extends CI_Model
     $this->db->where('LOWER(username)=', strtolower($login));
     $this->db->or_where('LOWER(email)=', strtolower($login));
 
-    $query = $this->db->get($this->table_name);
+    $query = $this->db->get($this->table_name)->result();
     if ($query->num_rows() == 1) return $query->row();
     return NULL;
   }

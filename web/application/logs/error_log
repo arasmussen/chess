@@ -1,0 +1,2 @@
+[Sat Nov 10 03:35:36 2012] [error] [client 12.207.20.2] PHP Fatal error:  Call to undefined method dashboard::getUsername() in /home/ec2-user/www/chess/web/application/controllers/dashboard.php on line 62, referer: http://venz.io/dashboard/upload?failed=name
+[Sat Nov 10 03:37:23 2012] [error] [client 12.207.20.2] PHP Fatal error:  Call to undefined function uploadFile() in /home/ec2-user/www/chess/web/application/controllers/dashboard.php on line 41, referer: http://venz.io/dashboard/upload?failed=name
