@@ -29,6 +29,8 @@ bool sendMove() {
 
   cout << moves.front();
   moves.pop();
+
+  return false;
 }
 
 int main(int argc, char** argv) {

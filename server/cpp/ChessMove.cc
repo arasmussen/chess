@@ -7,8 +7,25 @@ ChessMove::ChessMove(const ChessPiece* piece, BoardPosition* initial, BoardPosit
   initialPosition(initial),
   finalPosition(final),
   type(Normal),
-  special(NULL)
+  special(NULL),
+  stringRep()
 {}
+
+ChessMove::ChessMove(const ChessBoard* board, shared_ptr<string> move) :
+  piece(NULL),
+  initialPosition(NULL),
+  finalPosition(NULL),
+  special(NULL),
+  type(Normal),
+  stringRep(move)
+{
+  int indexOfSeparator = move->find_first_of(':');
+  if (indexOfSeparator == 2 && move->length() == 5) {
+    initialPosition = new BoardPosition(move->substr(0, 2));
+    finalPosition = new BoardPosition(move->substr(indexOfSeparator+1, 2));
+    piece = board->pieceAtPosition(initialPosition);
+  }
+}
 
 ChessMove::~ChessMove() {
   if (initialPosition) {
@@ -17,20 +34,6 @@ ChessMove::~ChessMove() {
 
   if (finalPosition) {
     delete finalPosition;
-  }
-}
-
-ChessMove::ChessMove(const ChessBoard* board, shared_ptr<string> move) :
-  stringRep(move),
-  type(Normal),
-  piece(NULL),
-  special(NULL)
-{
-  int indexOfSeparator = move->find_first_of(':');
-  if (indexOfSeparator == 2 && move->length() == 5) {
-    initialPosition = new BoardPosition(move->substr(0, 2));
-    finalPosition = new BoardPosition(move->substr(indexOfSeparator+1, 2));
-    piece = board->pieceAtPosition(initialPosition);
   }
 }
 

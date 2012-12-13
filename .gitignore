@@ -3,3 +3,8 @@
 /test
 /web/bots/*
 /web/application/logs/*_log
+
+# Vim
+*.swp
+*.swo
+*.swn
