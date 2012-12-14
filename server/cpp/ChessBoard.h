@@ -3,6 +3,9 @@
 
 #define BOARD_SIZE 8
 
+#include <boost/shared_ptr.hpp>
+using boost::shared_ptr;
+
 class ChessPiece;
 class ChessMove;
 class BoardPosition;
@@ -14,15 +17,13 @@ enum ChessMoveResult {
 };
 
 class ChessBoard {
-  public:
-    ChessBoard();
-    ~ChessBoard();
+ public:
+  ChessBoard();
   
   ChessMoveResult performMove(ChessMove *move);  
-  const ChessPiece *pieceAtPosition(BoardPosition* position) const;
 
-  private:
-    ChessPiece *board [BOARD_SIZE][BOARD_SIZE];
+ private:
+  shared_ptr<ChessPiece> board [BOARD_SIZE][BOARD_SIZE];
 };
 
 #endif

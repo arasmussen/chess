@@ -33,18 +33,18 @@ ChessGameResult ChessGame::run() {
   ChessMove *whiteMove;
   ChessMove *blackMove;
 
-  whiteMove = new ChessMove(board, whiteAlgorithm->getFirstMove());
+  whiteMove = new ChessMove(whiteAlgorithm->getFirstMove());
   while (true) {
     if (applyMove(whiteAlgorithm, blackAlgorithm, whiteMove)) {
       break;
     }
 
-    blackMove = new ChessMove(board, blackAlgorithm->getMove(whiteMove->toString()));
+    blackMove = new ChessMove(blackAlgorithm->getMove(whiteMove->toString()));
     if (applyMove(blackAlgorithm, whiteAlgorithm, blackMove)) {
       break;
     }
 
-    whiteMove = new ChessMove(board, whiteAlgorithm->getMove(blackMove->toString()));
+    whiteMove = new ChessMove(whiteAlgorithm->getMove(blackMove->toString()));
   }
 
   whiteAlgorithm->stop();

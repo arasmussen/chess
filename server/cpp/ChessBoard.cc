@@ -19,32 +19,21 @@ ChessBoard::ChessBoard() {
   for (int i = 0; i < BOARD_SIZE; i++) {
     for (int j = 0; j < BOARD_SIZE; j++) {
       if (startingBoard[i][j][0] != -1) {
-        BoardPosition position(i,j);
-        board[i][j] = new ChessPiece((ChessPieceColor)startingBoard[i][j][0], (ChessPieceType)startingBoard[i][j][1], position);
-      } else {
-        board[i][j] = NULL;
-      }
-    }
-  }
-}
-
-ChessBoard::~ChessBoard() {
-  for (int i = 0; i < BOARD_SIZE; i++) {
-    for (int j = 0; j < BOARD_SIZE; j++) {
-      if (board[i][j] != NULL) {
-        delete board[i][j];
+        board[i][j] = shared_ptr<ChessPiece>(new ChessPiece((ChessPieceColor)startingBoard[i][j][0],
+                                                            (ChessPieceType)startingBoard[i][j][1]));
       }
     }
   }
 }
 
 ChessMoveResult ChessBoard::performMove(ChessMove *move) {
-  if (!move->isValid()) {
-    return Error;
+  if (move->isValid()) {
+    const BoardPosition* start = move->initialPosition.get();
+    const BoardPosition* end = move->finalPosition.get();
+    if (board[start->row][start->column]) {
+      return Continue;
+    }
   }
-  return Continue;
-}
 
-const ChessPiece* ChessBoard::pieceAtPosition(BoardPosition* position) const {
-  return board[position->row][position->column];
+  return Error;
 }

@@ -4,9 +4,11 @@
 #include "BoardPosition.h"
 #include <string>
 #include <boost/shared_ptr.hpp>
+#include <boost/scoped_ptr.hpp>
 
 using namespace std;
 using boost::shared_ptr;
+using boost::scoped_ptr;
 
 class ChessPiece;
 class ChessBoard;
@@ -21,19 +23,8 @@ enum ChessMoveType {
 
 class ChessMove {
   public:
-    const ChessPiece *piece;
-    BoardPosition* initialPosition;
-    BoardPosition* finalPosition;
-
-    ~ChessMove();
-
-    // For special moves like castles and en passe.
-    ChessMove *special;
-    ChessMoveType type;
-
     // Normal moves
-    ChessMove(const ChessBoard* board, shared_ptr<string> move);
-    ChessMove(const ChessPiece* piece, BoardPosition* initial, BoardPosition* final); 
+    ChessMove(shared_ptr<string> move);
     
     // Castles
     // ChessMove(ChessMoveType type);
@@ -43,9 +34,16 @@ class ChessMove {
 
     bool isValid();
     const string& toString();
-  
+
+    scoped_ptr<const BoardPosition> initialPosition;
+    scoped_ptr<const BoardPosition> finalPosition;
+
+    // For special moves like castles and en passe.
+    //  ChessMove *special;
+    ChessMoveType type;
+   
   private:
-    shared_ptr<string> stringRep;
+    const string stringRep;
 };
 
 #endif

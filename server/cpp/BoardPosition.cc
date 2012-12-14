@@ -15,6 +15,6 @@ BoardPosition::BoardPosition(const string& pos) :
   column(7 - (pos[0] - 'a'))
 {}
 
-bool BoardPosition::isValid() {
+bool BoardPosition::isValid() const {
   return 0 <= row && row <= 7 && 0 <= column && column <= 7;
 }

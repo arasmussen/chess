@@ -1,8 +1,6 @@
 #ifndef __CHESS_PIECE_H_
 #define __CHESS_PIECE_H_
 
-#include "BoardPosition.h"
-
 enum ChessPieceType {
   Pawn,
   Knight,
@@ -19,11 +17,10 @@ enum ChessPieceColor {
 
 class ChessPiece {
   public:
+    ChessPiece(ChessPieceColor color, ChessPieceType type);
+
     ChessPieceColor color;
     ChessPieceType type;
-    BoardPosition position;
-
-    ChessPiece(ChessPieceColor color, ChessPieceType type, BoardPosition &position);
 };
 
 #endif

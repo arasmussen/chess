@@ -14,7 +14,7 @@ class BoardPosition {
     BoardPosition(int row, int column);
     BoardPosition(const string& pos);
 
-    bool isValid();
+    bool isValid() const;
 };
 
 
