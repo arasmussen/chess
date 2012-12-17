@@ -4,6 +4,7 @@
 #include "ChessMove.h"
 #include <iostream>
 #include <boost/shared_ptr.hpp>
+#include <csignal>
 
 using boost::shared_ptr;
 
@@ -14,7 +15,13 @@ ChessGame::ChessGame(const string& whiteAlgorithm, const string& blackAlgorithm)
   board(new ChessBoard()),
   whiteAlgorithm(new ChessAlgorithm(whiteAlgorithm, White)),
   blackAlgorithm(new ChessAlgorithm(blackAlgorithm, Black))
-{}
+{
+  struct sigaction* act = new struct sigaction;
+  act->sa_handler = SIG_IGN;
+  sigemptyset(&act->sa_mask);
+  act->sa_flags = 0;
+  sigaction(SIGPIPE, act, NULL);
+}
 
 ChessGame::~ChessGame() {
   delete board;

@@ -141,7 +141,7 @@ shared_ptr<string> ChessAlgorithm::readFromPipe() {
   int bytesRead = read(readPipe[0], buf, 30);
 
   if (bytesRead < 0) {
-    ERROR("Read error");
+    return shared_ptr<string>(new string(""));
   }
 
   return shared_ptr<string>(new string(buf, bytesRead));
@@ -151,9 +151,5 @@ void ChessAlgorithm::writeToPipe(const string& move) {
   string sendMove = move;
   sendMove.append("\n");
 
-  int bytesWritten = write(writePipe[1], sendMove.c_str(), sendMove.length());
-  if (bytesWritten < 0) {
-    ERROR("Write Error");
-  }
-
+  write(writePipe[1], sendMove.c_str(), sendMove.length());
 }
