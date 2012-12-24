@@ -23,7 +23,7 @@ static const string kLoseByCheckmate("Lose:Checkmate");
 static const string kLoseByIllegalMove("Lose:IllegalMove");
 
 
-ChessAlgorithm::ChessAlgorithm(const string& algorithm, Color color) :
+ChessAlgorithm::ChessAlgorithm(const string& algorithm, PlayerColor color) :
   color(color)
 {
   // Tokenize string
@@ -110,11 +110,11 @@ void ChessAlgorithm::didFinish(EndGameResult result) {
   writeToPipe(endGameResultToString(result));
 }
 
-const string& ChessAlgorithm::colorToString(Color c) {
+const string& ChessAlgorithm::colorToString(PlayerColor c) {
   switch(c) {
-    case White:
+    case WhitePlayer:
       return kWhitePlayer;
-    case Black:
+    case BlackPlayer:
       return kBlackPlayer;
     default:
       ERROR("Invalid Color");

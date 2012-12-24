@@ -13,8 +13,8 @@ static const char *illegalMove = "IllegalMove";
 
 ChessGame::ChessGame(const string& whiteAlgorithm, const string& blackAlgorithm) :
   board(new ChessBoard()),
-  whiteAlgorithm(new ChessAlgorithm(whiteAlgorithm, White)),
-  blackAlgorithm(new ChessAlgorithm(blackAlgorithm, Black))
+  whiteAlgorithm(new ChessAlgorithm(whiteAlgorithm, WhitePlayer)),
+  blackAlgorithm(new ChessAlgorithm(blackAlgorithm, BlackPlayer))
 {
   struct sigaction* act = new struct sigaction;
   act->sa_handler = SIG_IGN;

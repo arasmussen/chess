@@ -17,7 +17,9 @@ ChessMove::ChessMove(shared_ptr<string> move) :
 
 bool ChessMove::isValid() {
   return initialPosition.get() && initialPosition->isValid() &&
-         finalPosition.get() && finalPosition->isValid();
+         finalPosition.get() && finalPosition->isValid() &&
+         (initialPosition->row != finalPosition->row ||
+          initialPosition->column != finalPosition->column);
 }
 
 const string& ChessMove::toString() {

@@ -13,6 +13,25 @@ cleanup() {
   fi
 }
 
+fail() {
+  echo "TEST CASE FAILED: ${testCase}"
+
+  echo "White - Expected: "
+  cat ${folder}/white.out
+
+  echo "White - Given:"
+  cat ${$}.white.out
+
+  echo "Black - Expected: "
+  cat ${folder}/black.out
+
+  echo "Black - Given:"
+  cat ${$}.black.out
+
+  cleanup
+  exit 1
+}
+
 ${BUILD_DIR}/runUnitTest "${BUILD_DIR}/algorithm ${folder}/white.in ${$}.white.out" "${BUILD_DIR}/algorithm ${folder}/black.in ${$}.black.out"
 if [ ${?} -ne 0 ]; then
   echo "Runtime Error: ${testCase}"
@@ -20,18 +39,14 @@ if [ ${?} -ne 0 ]; then
   exit 1
 fi
 
-diff ${$}.white.out ${folder}/white.out
+diff ${$}.white.out ${folder}/white.out > /dev/null
 if [ ${?} -ne 0 ]; then
-  echo "WHITE TEST CASE FAILED: ${testCase}"
-  cleanup
-  exit 1
+  fail
 fi
 
-diff ${$}.black.out ${folder}/black.out
+diff ${$}.black.out ${folder}/black.out > /dev/null
 if [ ${?} -ne 0 ]; then
-  echo "BLACK TEST CASE FAILED: ${testCase}"
-  cleanup
-  exit 1
+  fail
 fi
 
 echo "${testCase} - PASSED" 

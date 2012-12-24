@@ -1,0 +1,6 @@
+e2:e4
+e1:e2
+e2:d3
+d3:c3
+c3:d4
+Win:IllegalMove

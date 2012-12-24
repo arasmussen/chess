@@ -10,9 +10,9 @@ using boost::shared_ptr;
 
 class ChessMove;
 
-enum Color {
-  White,
-  Black
+enum PlayerColor {
+  WhitePlayer,
+  BlackPlayer
 };
 
 enum EndGameResult {
@@ -24,7 +24,7 @@ enum EndGameResult {
 
 class ChessAlgorithm {
   public:
-    ChessAlgorithm(const string& algorithm, Color color);
+    ChessAlgorithm(const string& algorithm, PlayerColor color);
     ~ChessAlgorithm();
 
     void start();
@@ -36,11 +36,11 @@ class ChessAlgorithm {
     void didFinish(EndGameResult result);
   private:
     vector<string> tokens;
-    Color color;
+    PlayerColor color;
     int readPipe[2];
     int writePipe[2];
 
-    const string& colorToString(Color c);
+    const string& colorToString(PlayerColor c);
     const string& endGameResultToString(EndGameResult result);
 
     shared_ptr<string> readFromPipe();

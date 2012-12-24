@@ -11,10 +11,10 @@ BoardPosition::BoardPosition(int row, int column) :
 {}
 
 BoardPosition::BoardPosition(const string& pos) :
-  row(7 - (pos[1] - '1')),
-  column(pos[0] - 'a')
+  row(pos[1] - '0'),
+  column(pos[0] - 'a' + 1)
 {}
 
 bool BoardPosition::isValid() const {
-  return 0 <= row && row <= 7 && 0 <= column && column <= 7;
+  return 1 <= row && row <= 8 && 1 <= column && column <= 8;
 }
