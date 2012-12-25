@@ -8,13 +8,10 @@
 
 using boost::shared_ptr;
 
-static const char *byCheckmate = "ByCheckmate";
-static const char *illegalMove = "IllegalMove";
-
 ChessGame::ChessGame(const string& whiteAlgorithm, const string& blackAlgorithm) :
-  board(new ChessBoard()),
   whiteAlgorithm(new ChessAlgorithm(whiteAlgorithm, WhitePlayer)),
-  blackAlgorithm(new ChessAlgorithm(blackAlgorithm, BlackPlayer))
+  blackAlgorithm(new ChessAlgorithm(blackAlgorithm, BlackPlayer)),
+  board(new ChessBoard())
 {
   struct sigaction* act = new struct sigaction;
   act->sa_handler = SIG_IGN;
@@ -56,6 +53,9 @@ ChessGameResult ChessGame::run() {
 
   whiteAlgorithm->stop();
   blackAlgorithm->stop();
+
+  // Dummy return until we get win-game logic.
+  return WhiteWin;
 }
 
 bool ChessGame::applyMove(ChessAlgorithm *applier, ChessAlgorithm *receiver, ChessMove *move) {
@@ -72,6 +72,9 @@ bool ChessGame::applyMove(ChessAlgorithm *applier, ChessAlgorithm *receiver, Che
       receiver->didFinish(WinByIllegalMove);
       return true;
     case Continue:
+      return false;
+    default:
+      cerr << "Error: Unhandled ChessMoveResult in ChessGame::ApplyMove" << endl;
       return false;
   }
 }

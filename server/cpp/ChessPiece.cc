@@ -4,7 +4,6 @@
 #include <cmath>
 
 ChessPiece* ChessPiece::makePiece(ChessPieceColor c, ChessPieceType t) {
-  ChessPiece* p = NULL;
   switch (t) {
     case tPawn:
       return new Pawn(c);
@@ -18,6 +17,9 @@ ChessPiece* ChessPiece::makePiece(ChessPieceColor c, ChessPieceType t) {
       return new Queen(c);
     case tKing:
       return new King(c);
+    default:
+      cerr << "Error: Unhandled ChessPieceType in ChessPiece::makePiece" << endl;
+      return NULL;
   }
 }
 

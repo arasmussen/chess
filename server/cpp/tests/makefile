@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -g
+CFLAGS = -g -Wall
 BUILD_DIR = $(CPP_CHESS_ROOT)/bin
 OBJS = unitTest.cc ../ChessGame.cc ../ChessBoard.cc ../ChessAlgorithm.cc ../ChessMove.cc ../ChessPiece.cc ../BoardPosition.cc
 

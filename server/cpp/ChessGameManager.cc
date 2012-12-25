@@ -6,6 +6,8 @@
 void *startThread(void *ptr) {
   ChessGame *game = (ChessGame *)ptr;
   game->run();
+
+  return NULL;
 }
 
 ChessGameManager::ChessGameManager() {

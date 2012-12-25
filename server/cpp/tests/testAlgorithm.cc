@@ -45,7 +45,6 @@ int main(int argc, char** argv) {
   } 
   
   // Get list of moves from supplied file
-  bool turn = (player == "White");  
   string move;
   input >> move;
   while (input.good()) {

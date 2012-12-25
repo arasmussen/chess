@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -g -DHAVE_NETINET_IN_H
+CFLAGS = -g -Wall -DHAVE_NETINET_IN_H
 BUILD_DIR = $(CPP_CHESS_ROOT)/bin
 OBJS = ChessGameManager.o ChessGame.o ChessBoard.o ChessAlgorithm.o ChessMove.o ChessPiece.o BoardPosition.o
 OUT_OBJS = $(addprefix $(BUILD_DIR)/, $(OBJS))
