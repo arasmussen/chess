@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -g -Wall -DHAVE_NETINET_IN_H
 BUILD_DIR = $(CPP_CHESS_ROOT)/bin
-OBJS = ChessGameManager.o ChessGame.o ChessBoard.o ChessAlgorithm.o ChessMove.o ChessPiece.o BoardPosition.o
+OBJS = ChessGameManager.o ChessGame.o ChessBoard.o ChessAlgorithm.o ChessMove.o ChessPiece.o BoardPosition.o ChessColor.o
 OUT_OBJS = $(addprefix $(BUILD_DIR)/, $(OBJS))
 EXEC = startServer
 LIBS = /usr/local/lib
@@ -22,7 +22,7 @@ $(BUILD_DIR)/ChessGameManager.o : $(BUILD_DIR)/ChessGame.o
 
 $(BUILD_DIR)/ChessGame.o: $(BUILD_DIR)/ChessBoard.o $(BUILD_DIR)/ChessAlgorithm.o
 
-$(BUILD_DIR)/ChessAlgorithm.o : $(BUILD_DIR)/ChessMove.o
+$(BUILD_DIR)/ChessAlgorithm.o : $(BUILD_DIR)/ChessMove.o $(BUILD_DIR)/ChessColor.o
 
 $(BUILD_DIR)/ChessBoard.o: $(BUILD_DIR)/ChessMove.o
 

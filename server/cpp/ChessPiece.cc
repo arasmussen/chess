@@ -3,7 +3,7 @@
 #include "ChessBoard.h"
 #include <cmath>
 
-ChessPiece* ChessPiece::makePiece(ChessPieceColor c, ChessPieceType t) {
+ChessPiece* ChessPiece::makePiece(ChessColor c, ChessPieceType t) {
   switch (t) {
     case tPawn:
       return new Pawn(c);
@@ -23,7 +23,7 @@ ChessPiece* ChessPiece::makePiece(ChessPieceColor c, ChessPieceType t) {
   }
 }
 
-ChessPiece::ChessPiece(ChessPieceColor color, ChessPieceType type) :
+ChessPiece::ChessPiece(ChessColor color, ChessPieceType type) :
   color(color),
   type(type)
 {
@@ -36,7 +36,7 @@ ChessPiece::~ChessPiece()
   *** Pawn ***
 */
 
-Pawn::Pawn(ChessPieceColor c) :
+Pawn::Pawn(ChessColor c) :
   ChessPiece(c, tPawn)
 {
 }
@@ -74,7 +74,7 @@ bool Pawn::validMove(const ChessBoard* board, const BoardPosition* start, const 
   *** Knight ***
 */
 
-Knight::Knight(ChessPieceColor c) :
+Knight::Knight(ChessColor c) :
   ChessPiece(c, tKnight)
 {
 }
@@ -93,7 +93,7 @@ bool Knight::validMove(const ChessBoard* board, const BoardPosition* start, cons
   *** Bishop ***
 */
 
-Bishop::Bishop(ChessPieceColor c) :
+Bishop::Bishop(ChessColor c) :
   ChessPiece(c, tBishop)
 {
 }
@@ -112,7 +112,7 @@ bool Bishop::validMove(const ChessBoard* board, const BoardPosition* start, cons
   *** Rook ***
 */
 
-Rook::Rook(ChessPieceColor c) :
+Rook::Rook(ChessColor c) :
   ChessPiece(c, tRook)
 {
 }
@@ -131,7 +131,7 @@ bool Rook::validMove(const ChessBoard* board, const BoardPosition* start, const 
   *** Queen ***
 */
 
-Queen::Queen(ChessPieceColor c) :
+Queen::Queen(ChessColor c) :
   ChessPiece(c, tQueen),
   m_rook(c),
   m_bishop(c)
@@ -150,7 +150,7 @@ bool Queen::validMove(const ChessBoard* board, const BoardPosition* start, const
   *** King ***
 */
 
-King::King(ChessPieceColor c) :
+King::King(ChessColor c) :
   ChessPiece(c, tKing)
 {
 }

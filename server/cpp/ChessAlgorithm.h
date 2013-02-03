@@ -1,6 +1,8 @@
 #ifndef __CHESS_ALGORITHM_H_
 #define __CHESS_ALGORITHM_H_
 
+#include "ChessColor.h"
+
 #include <string>
 #include <vector>
 #include <boost/shared_ptr.hpp>
@@ -9,11 +11,6 @@ using namespace std;
 using boost::shared_ptr;
 
 class ChessMove;
-
-enum PlayerColor {
-  WhitePlayer,
-  BlackPlayer
-};
 
 enum EndGameResult {
   WinByCheckmate,
@@ -24,7 +21,7 @@ enum EndGameResult {
 
 class ChessAlgorithm {
   public:
-    ChessAlgorithm(const string& algorithm, PlayerColor color);
+    ChessAlgorithm(const string& algorithm, ChessColor color);
     ~ChessAlgorithm();
 
     void start();
@@ -36,11 +33,10 @@ class ChessAlgorithm {
     void didFinish(EndGameResult result);
   private:
     vector<string> tokens;
-    PlayerColor color;
+    ChessColor color;
     int readPipe[2];
     int writePipe[2];
 
-    const string& colorToString(PlayerColor c);
     const string& endGameResultToString(EndGameResult result);
 
     shared_ptr<string> readFromPipe();

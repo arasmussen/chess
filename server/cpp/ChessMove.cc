@@ -2,11 +2,12 @@
 #include "ChessPiece.h"
 #include "ChessBoard.h"
 
-ChessMove::ChessMove(shared_ptr<string> move) :
+ChessMove::ChessMove(const ChessColor playerColor, shared_ptr<string> move) :
   initialPosition(),
   finalPosition(),
   type(Normal),
-  stringRep(*move)
+  stringRep(*move),
+  playerColor(playerColor)
 {
   int indexOfSeparator = move->find_first_of(':');
   if (indexOfSeparator == 2 && move->length() == 5) {

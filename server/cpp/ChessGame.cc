@@ -1,16 +1,19 @@
 #include "ChessGame.h"
-#include "ChessBoard.h"
+
 #include "ChessAlgorithm.h"
+#include "ChessBoard.h"
+#include "ChessColor.h"
 #include "ChessMove.h"
-#include <iostream>
+
 #include <boost/shared_ptr.hpp>
 #include <csignal>
+#include <iostream>
 
 using boost::shared_ptr;
 
 ChessGame::ChessGame(const string& whiteAlgorithm, const string& blackAlgorithm) :
-  whiteAlgorithm(new ChessAlgorithm(whiteAlgorithm, WhitePlayer)),
-  blackAlgorithm(new ChessAlgorithm(blackAlgorithm, BlackPlayer)),
+  whiteAlgorithm(new ChessAlgorithm(whiteAlgorithm, White)),
+  blackAlgorithm(new ChessAlgorithm(blackAlgorithm, Black)),
   board(new ChessBoard())
 {
   struct sigaction* act = new struct sigaction;
@@ -37,18 +40,18 @@ ChessGameResult ChessGame::run() {
   ChessMove *whiteMove;
   ChessMove *blackMove;
 
-  whiteMove = new ChessMove(whiteAlgorithm->getFirstMove());
+  whiteMove = new ChessMove(White, whiteAlgorithm->getFirstMove());
   while (true) {
     if (applyMove(whiteAlgorithm, blackAlgorithm, whiteMove)) {
       break;
     }
 
-    blackMove = new ChessMove(blackAlgorithm->getMove(whiteMove->toString()));
+    blackMove = new ChessMove(Black, blackAlgorithm->getMove(whiteMove->toString()));
     if (applyMove(blackAlgorithm, whiteAlgorithm, blackMove)) {
       break;
     }
 
-    whiteMove = new ChessMove(whiteAlgorithm->getMove(blackMove->toString()));
+    whiteMove = new ChessMove(White, whiteAlgorithm->getMove(blackMove->toString()));
   }
 
   whiteAlgorithm->stop();

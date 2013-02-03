@@ -1,0 +1,12 @@
+ChessMoves
+  - Support for En Passent, Pawn Advancement
+  - Castles
+  - Check for king moving into check
+
+Game Play
+  - Check for checkmate, stalemate
+
+Cleanup
+  - Add more comments
+  - Add some kind of logging
+  - Fix memory errors

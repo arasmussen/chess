@@ -15,15 +15,13 @@ using namespace std;
 // Since we control syntax for moves we can set an upper limit here.
 static const int maxMoveLength = 30;
 
-static const string kWhitePlayer("White");
-static const string kBlackPlayer("Black");
 static const string kWinByCheckmate("Win:Checkmate");
 static const string kWinByIllegalMove("Win:IllegalMove");
 static const string kLoseByCheckmate("Lose:Checkmate");
 static const string kLoseByIllegalMove("Lose:IllegalMove");
 
 
-ChessAlgorithm::ChessAlgorithm(const string& algorithm, PlayerColor color) :
+ChessAlgorithm::ChessAlgorithm(const string& algorithm, ChessColor color) :
   color(color)
 {
   // Tokenize string
@@ -109,18 +107,6 @@ shared_ptr<string> ChessAlgorithm::getMove(const string& sendMove) {
 void ChessAlgorithm::didFinish(EndGameResult result) {
   writeToPipe(endGameResultToString(result));
 }
-
-const string& ChessAlgorithm::colorToString(PlayerColor c) {
-  switch(c) {
-    case WhitePlayer:
-      return kWhitePlayer;
-    case BlackPlayer:
-      return kBlackPlayer;
-    default:
-      ERROR("Invalid Color");
-  }
-}
-
 const string& ChessAlgorithm::endGameResultToString(EndGameResult result) {
   switch (result) {
     case WinByCheckmate:

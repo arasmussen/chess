@@ -1,6 +1,8 @@
 #ifndef __CHESS_PIECE_H_
 #define __CHESS_PIECE_H_
 
+#include "ChessColor.h"
+
 class BoardPosition;
 class ChessBoard;
 
@@ -13,29 +15,24 @@ enum ChessPieceType {
   tKing
 };
 
-enum ChessPieceColor {
-  White,
-  Black
-};
-
 class ChessPiece {
  public:
   // Returns an allocated chess piece.
-  static ChessPiece* makePiece(ChessPieceColor c, ChessPieceType t);  
+  static ChessPiece* makePiece(ChessColor c, ChessPieceType t);  
 
-  ChessPiece(ChessPieceColor color, ChessPieceType type);
+  ChessPiece(ChessColor color, ChessPieceType type);
   virtual ~ChessPiece();
 
   virtual bool validMove(const ChessBoard* board, const BoardPosition* start,
                          const BoardPosition* end) const = 0;
 
-  ChessPieceColor color;
+  ChessColor color;
   ChessPieceType type;
 };
 
 class Pawn : public ChessPiece {
  public:
-  Pawn(ChessPieceColor c);
+  Pawn(ChessColor c);
   ~Pawn();
 
   bool validMove(const ChessBoard* board, const BoardPosition* start, const BoardPosition* end) const;
@@ -43,7 +40,7 @@ class Pawn : public ChessPiece {
 
 class Knight : public ChessPiece {
  public:
-  Knight(ChessPieceColor c);
+  Knight(ChessColor c);
   ~Knight();
 
   bool validMove(const ChessBoard* board, const BoardPosition* start, const BoardPosition* end) const;
@@ -51,7 +48,7 @@ class Knight : public ChessPiece {
 
 class Bishop : public ChessPiece {
  public:
-  Bishop(ChessPieceColor c);
+  Bishop(ChessColor c);
   ~Bishop();
 
   bool validMove(const ChessBoard* board, const BoardPosition* start, const BoardPosition* end) const;
@@ -59,7 +56,7 @@ class Bishop : public ChessPiece {
 
 class Rook : public ChessPiece {
  public:
-  Rook(ChessPieceColor c);
+  Rook(ChessColor c);
   ~Rook();
 
   bool validMove(const ChessBoard* board, const BoardPosition* start, const BoardPosition* end) const;
@@ -67,7 +64,7 @@ class Rook : public ChessPiece {
 
 class Queen : public ChessPiece {
  public:
-  Queen(ChessPieceColor c);
+  Queen(ChessColor c);
   ~Queen();
 
   bool validMove(const ChessBoard* board, const BoardPosition* start, const BoardPosition* end) const;
@@ -80,7 +77,7 @@ class Queen : public ChessPiece {
 
 class King : public ChessPiece {
  public:
-  King(ChessPieceColor c);
+  King(ChessColor c);
   ~King();
 
   bool validMove(const ChessBoard* board, const BoardPosition* start, const BoardPosition* end) const;
